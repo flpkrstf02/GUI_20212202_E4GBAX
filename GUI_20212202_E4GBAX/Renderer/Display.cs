@@ -29,6 +29,19 @@ namespace GUI_20212202_E4GBAX.Renderer
                 double rectWidth = size.Width / model.GameMatrix.GetLength(1);
                 drawingContext.DrawRectangle(Brushes.Black, new Pen(Brushes.Black, 0),
                     new Rect(0, 0, size.Width, size.Height));
+                for (int i = 0; i < model.GameMatrix.GetLength(0); i++)
+                {
+                    for (int j = 0; j < model.GameMatrix.GetLength(1); j++)
+                    {
+                        ImageBrush brush = new ImageBrush();
+                        switch(model.GameMatrix[i, j])
+                        {
+                            
+                        }
+                        
+                    }
+                }
+                
             }
         }
     }
