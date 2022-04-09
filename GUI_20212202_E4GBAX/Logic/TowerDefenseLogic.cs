@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GUI_20212202_E4GBAX.Logic
 {
-    public class TowerDefenseLogic
+    public class TowerDefenseLogic : IGameModel
     {
         public TowerItem[,] GameMatrix { get; set; }
         private Queue<string> levels;
@@ -47,9 +48,31 @@ namespace GUI_20212202_E4GBAX.Logic
                 case 'w': return TowerItem.wall;
                 case 'o': return TowerItem.available;
                 case 'p': return TowerItem.path;
-                case 'x': return TowerItem.position;
                 default:
-                    break;
+                    return TowerItem.position;
+            }
+        }
+        public void TowerPosition(Size size,Point p)
+        {
+            double x = p.X;
+            double y = p.Y;
+            double gridHeight = size.Height;
+            double gridWidth = size.Width;
+            double rectHeight = size.Height / GameMatrix.GetLength(0);
+            double rectWidth = size.Width / GameMatrix.GetLength(1);
+
+            for (int i = 0; i < GameMatrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < GameMatrix.GetLength(1); j++)
+                {
+                    if (y>=i*rectHeight && y<(i+1)*rectHeight && x >= j * rectWidth && x < (j + 1) * rectWidth)
+                    {
+                        if (GameMatrix[i,j]==TowerItem.available)
+                        {
+                            GameMatrix[i, j] = TowerItem.position;
+                        }
+                    }
+                }
             }
         }
     }

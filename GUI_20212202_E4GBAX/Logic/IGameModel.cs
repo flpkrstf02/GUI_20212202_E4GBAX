@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static GUI_20212202_E4GBAX.Logic.TowerDefenseLogic;
 
 namespace GUI_20212202_E4GBAX.Logic
 {
     public interface IGameModel
     {
-        char[,] GameMatrix { get; set; }
+        TowerItem[,] GameMatrix { get; set; }
     }
 }
