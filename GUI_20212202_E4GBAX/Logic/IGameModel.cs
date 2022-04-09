@@ -8,6 +8,6 @@ namespace GUI_20212202_E4GBAX.Logic
 {
     public interface IGameModel
     {
-        
+        char[,] GameMatrix { get; set; }
     }
 }
