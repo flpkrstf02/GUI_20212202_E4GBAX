@@ -10,5 +10,8 @@ namespace GUI_20212202_E4GBAX.Logic
     public interface IGameModel
     {
         TowerItem[,] GameMatrix { get; set; }
+        event EventHandler Changed;
+
+        List<Enemy> Enemies { get; set; }
     }
 }
