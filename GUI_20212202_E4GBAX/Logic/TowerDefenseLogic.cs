@@ -13,14 +13,14 @@ namespace GUI_20212202_E4GBAX.Logic
         private Queue<string> levels;
         public enum TowerItem
         {
-            player, wall, floor, door
+            available, wall, path, position
         }
 
         public TowerDefenseLogic()
         {
             levels = new Queue<string>();
             var lvls = Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Levels"),
-                "*.lvl");
+                "*.txt");
             foreach (var item in lvls)
             {
                 levels.Enqueue(item);
@@ -40,15 +40,16 @@ namespace GUI_20212202_E4GBAX.Logic
             }
         }
 
-        private TowerItem ConvertToEnum(char v)
+        private static TowerItem ConvertToEnum(char v)
         {
             switch (v)
             {
-                case 'e': return TowerItem.wall;
-                case 'S': return TowerItem.player;
-                case 'F': return TowerItem.door;
+                case 'w': return TowerItem.wall;
+                case 'o': return TowerItem.available;
+                case 'p': return TowerItem.path;
+                case 'x': return TowerItem.position;
                 default:
-                    return TowerItem.floor;
+                    break;
             }
         }
     }
