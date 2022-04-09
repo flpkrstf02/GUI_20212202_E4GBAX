@@ -10,6 +10,11 @@ namespace GUI_20212202_E4GBAX.Renderer
 {
     public class Display : FrameworkElement
     {
+        Size size;
+        public void Resize(Size size)
+        {
+            this.size = size;
+        }
         public void SetupLogic()
         {
 
@@ -17,7 +22,7 @@ namespace GUI_20212202_E4GBAX.Renderer
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
-            if (true)
+            if (size.Width > 50 && size.Height > 50)
             {
 
             }
