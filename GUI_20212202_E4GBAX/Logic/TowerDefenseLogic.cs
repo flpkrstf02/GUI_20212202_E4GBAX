@@ -37,6 +37,7 @@ namespace GUI_20212202_E4GBAX.Logic
         {
             string[] lines = File.ReadAllLines(path);
             GameMatrix = new TowerItem[int.Parse(lines[1]), int.Parse(lines[0])];
+            startCenter = new int[2];
             for (int i = 0; i < GameMatrix.GetLength(0); i++)
             {
                 for (int j = 0; j < GameMatrix.GetLength(1); j++)

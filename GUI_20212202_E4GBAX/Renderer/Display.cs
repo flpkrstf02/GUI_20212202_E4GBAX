@@ -30,50 +30,45 @@ namespace GUI_20212202_E4GBAX.Renderer
             {
                 double rectWidth = size.Width / model.GameMatrix.GetLength(1);
                 double rectHeight = size.Height / model.GameMatrix.GetLength(0);
-                drawingContext.DrawRectangle(Brushes.Black, new Pen(Brushes.Black, 0),
-                    new Rect(0, 0, size.Width, size.Height));
+                drawingContext.DrawRectangle(Brushes.Black, new Pen(Brushes.Black, 0),new Rect(0, 0, size.Width, size.Height));
                 for (int i = 0; i < model.GameMatrix.GetLength(0); i++)
                 {
                     for (int j = 0; j < model.GameMatrix.GetLength(1); j++)
                     {
                         ImageBrush brush = new ImageBrush();
+                        ImageBrush towerbrush = new ImageBrush();
                         switch (model.GameMatrix[i, j])
                         {
                             case TowerDefenseLogic.TowerItem.wall:
-                                brush = new ImageBrush
-                                    (new BitmapImage(new Uri(Path.Combine("Images", "bg_ground_4.png"), UriKind.RelativeOrAbsolute)));
+                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "bg_ground_4.png"), UriKind.RelativeOrAbsolute)));
                                 break;
                             case TowerDefenseLogic.TowerItem.position:
-                                brush = new ImageBrush
-                                    (new BitmapImage(new Uri(Path.Combine("Images", "tower1.png"), UriKind.RelativeOrAbsolute)));
-                                
+                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "bg_ground_0.png"), UriKind.RelativeOrAbsolute)));
+                                towerbrush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "tower1.png"), UriKind.RelativeOrAbsolute)));
                                 break;
                             case TowerDefenseLogic.TowerItem.path:
-                                brush = new ImageBrush
-                                    (new BitmapImage(new Uri(Path.Combine("Images", "bg_ground_2.png"), UriKind.RelativeOrAbsolute)));
+                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "bg_ground_2.png"), UriKind.RelativeOrAbsolute)));
                                 break;
                             case TowerDefenseLogic.TowerItem.available:
-                                brush = new ImageBrush
-                                    (new BitmapImage(new Uri(Path.Combine("Images", "bg_ground_0.png"), UriKind.RelativeOrAbsolute)));
+                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "bg_ground_0.png"), UriKind.RelativeOrAbsolute)));
                                 break;
                             case TowerDefenseLogic.TowerItem.start:
-                                brush = new ImageBrush
-                                    (new BitmapImage(new Uri(Path.Combine("Images", "bg_ground_2.png"), UriKind.RelativeOrAbsolute)));
+                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "bg_ground_2.png"), UriKind.RelativeOrAbsolute)));
                                 break;
                             default:
                                 break;
                         }
-                        drawingContext.DrawRectangle(brush
-                                    , new Pen(Brushes.Black, 0),
-                                    new Rect(j * rectWidth, i * rectHeight, rectWidth, rectHeight)
-                                    );
-
+                        drawingContext.DrawRectangle(brush, new Pen(Brushes.Black, 0), new Rect(j * rectWidth, i * rectHeight, rectWidth, rectHeight));
+                        if (towerbrush != null)
+                        {
+                            drawingContext.DrawRectangle(towerbrush, new Pen(Brushes.Black, 0), new Rect(j * rectWidth, i * rectHeight, rectWidth, rectHeight));
+                        }
                     }
                 }
                 foreach (var item in model.Enemies)
                 {
                     ImageBrush brush = new ImageBrush();
-                    brush=new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images","cannon9.png"), UriKind.RelativeOrAbsolute)));
+                    brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "cannon9.png"), UriKind.RelativeOrAbsolute)));
                     drawingContext.DrawEllipse(brush, null, new Point(item.Center.X, item.Center.Y), 20, 20);
                 }
 
