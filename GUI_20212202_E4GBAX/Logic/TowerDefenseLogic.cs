@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GUI_20212202_E4GBAX.Models;
 
 namespace GUI_20212202_E4GBAX.Logic
 {
@@ -68,11 +69,8 @@ namespace GUI_20212202_E4GBAX.Logic
         {
             double x = p.X;
             double y = p.Y;
-            double gridHeight = size.Height;
-            double gridWidth = size.Width;
             double rectHeight = size.Height / GameMatrix.GetLength(0);
             double rectWidth = size.Width / GameMatrix.GetLength(1);
-            
             for (int i = 0; i < GameMatrix.GetLength(0); i++)
             {
                 for (int j = 0; j < GameMatrix.GetLength(1); j++)
@@ -87,10 +85,13 @@ namespace GUI_20212202_E4GBAX.Logic
                 }
             }
         }
-        public void EnemySpawner()
+        public void EnemySpawner(Size size)
         {
-            Enemies.Add(new Enemy(new Point(startCenter[0],startCenter[1]), new Vector(10, 10)));
-
+            double rectHeight = size.Height / GameMatrix.GetLength(0);
+            double rectWidth = size.Width / GameMatrix.GetLength(1);
+            double x = startCenter[1] * rectWidth+(rectWidth/2);
+            double y = startCenter[0] * rectHeight+(rectHeight/2);
+            Enemies.Add(new Enemy(new Point(x,y), new Vector(10, 10)));
         }
     }
 }

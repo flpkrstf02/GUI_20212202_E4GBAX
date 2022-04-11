@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GUI_20212202_E4GBAX.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,6 @@ namespace GUI_20212202_E4GBAX.Logic
     {
         TowerItem[,] GameMatrix { get; set; }
         event EventHandler Changed;
-
         List<Enemy> Enemies { get; set; }
     }
 }

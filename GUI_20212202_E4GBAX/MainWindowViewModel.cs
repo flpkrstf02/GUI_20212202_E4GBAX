@@ -29,6 +29,8 @@ namespace GUI_20212202_E4GBAX
 
         }
         public ICommand StartGameCommand { get; set; }
+        public ICommand LoadGameCommand { get; set; }
+        public ICommand QuitCommand { get; set; }
         public MainWindowViewModel(IGameWindowLogic logic)
         {
             this.logic = logic;

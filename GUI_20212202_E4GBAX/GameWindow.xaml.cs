@@ -47,6 +47,7 @@ namespace GUI_20212202_E4GBAX
         {
             Point p = e.GetPosition(grid);
             logic.TowerPosition(new Size(grid.ActualWidth, grid.ActualHeight), p);
+            logic.EnemySpawner(new Size(grid.ActualWidth, grid.ActualHeight));
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
             display.InvalidateVisual();
         }
