@@ -20,11 +20,12 @@ namespace GUI_20212202_E4GBAX
     {
         public App()
         {
-            //Ioc.Default.ConfigureServices(
-            //    new ServiceCollection()
-            //        .AddSingleton<IGameWindowLogic, GameWindowLogic>()
-            //        .AddSingleton<IGameWindowService, GameWindowViaWindow>()
-            //        .AddSingleton<IMessenger>(WeakReferenceMessenger.Default).BuildServiceProvider());
+            Ioc.Default.ConfigureServices(
+                new ServiceCollection()
+                    .AddSingleton<IGameWindowLogic, GameWindowLogic>()
+                    .AddSingleton<IGameWindowService, GameWindowViaWindow>()
+                    .AddSingleton<IMessenger>(WeakReferenceMessenger.Default).BuildServiceProvider()
+                    );
         }
     }
 }
