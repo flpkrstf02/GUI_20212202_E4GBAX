@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace GUI_20212202_E4GBAX
 {
@@ -35,10 +36,14 @@ namespace GUI_20212202_E4GBAX
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //DispatcherTimer dt = new DispatcherTimer();
-            //dt.Interval = TimeSpan.FromMilliseconds(100);
-            //dt.Tick += Dt_Tick;
-            //dt.Start();
+            DispatcherTimer dt = new DispatcherTimer();
+            dt.Interval = TimeSpan.FromMilliseconds(100);
+            dt.Tick += (sender, eventargs) =>
+            {
+                logic.TimeStep(new Size(grid.ActualWidth, grid.ActualHeight));
+                display.InvalidateVisual();
+            };
+            dt.Start();
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
             display.InvalidateVisual();
         }

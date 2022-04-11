@@ -91,7 +91,14 @@ namespace GUI_20212202_E4GBAX.Logic
             double rectWidth = size.Width / GameMatrix.GetLength(1);
             double x = startCenter[1] * rectWidth+(rectWidth/2);
             double y = startCenter[0] * rectHeight+(rectHeight/2);
-            Enemies.Add(new Enemy(new Point(x,y), new Vector(10, 10)));
+            Enemies.Add(new Enemy(new Point(x,y), new Vector(0, 2)));
+        }
+        public void TimeStep(Size size)
+        {
+            foreach (var item in Enemies)
+            {
+                item.Move(size);
+            }
         }
     }
 }

@@ -68,8 +68,8 @@ namespace GUI_20212202_E4GBAX.Renderer
                 foreach (var item in model.Enemies)
                 {
                     ImageBrush brush = new ImageBrush();
-                    brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "cannon9.png"), UriKind.RelativeOrAbsolute)));
-                    drawingContext.DrawEllipse(brush, null, new Point(item.Center.X, item.Center.Y), 20, 20);
+                    brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "Run2.png"), UriKind.RelativeOrAbsolute)));
+                    drawingContext.DrawEllipse(brush, null, new Point(item.Center.X, item.Center.Y), 40, 40);
                 }
 
             }
