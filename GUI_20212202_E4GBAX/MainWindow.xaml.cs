@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -14,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.IO;
+using System.Windows;
 
 namespace GUI_20212202_E4GBAX
 {
@@ -22,36 +23,11 @@ namespace GUI_20212202_E4GBAX
     /// </summary>
     public partial class MainWindow : Window
     {
-        TowerDefenseLogic logic;
         public MainWindow()
         {
             InitializeComponent();
-            logic = new TowerDefenseLogic();
-            display.SetupModel(logic);
-        }
+            img.ImageSource = new BitmapImage(new Uri(System.IO.Path.Combine("Images", "stonebg.jpg"), UriKind.RelativeOrAbsolute));
 
-        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
-            display.InvalidateVisual();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            //DispatcherTimer dt = new DispatcherTimer();
-            //dt.Interval = TimeSpan.FromMilliseconds(100);
-            //dt.Tick += Dt_Tick;
-            //dt.Start();
-            display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
-            display.InvalidateVisual();
-        }
-
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            Point p = e.GetPosition(grid);
-            logic.TowerPosition(new Size(grid.ActualWidth, grid.ActualHeight),p);
-            display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
-            display.InvalidateVisual();
         }
     }
 }
