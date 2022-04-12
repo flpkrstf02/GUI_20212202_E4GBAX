@@ -1,4 +1,5 @@
-﻿using GUI_20212202_E4GBAX.Service;
+﻿using GUI_20212202_E4GBAX.Models;
+using GUI_20212202_E4GBAX.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,10 @@ namespace GUI_20212202_E4GBAX.Logic
         public void StartGame()
         {
             service.StartGame();
+        }
+        public void LoadGame(SavedGame savedGame)
+        {
+            service.LoadGame(savedGame);
         }
     }
 }

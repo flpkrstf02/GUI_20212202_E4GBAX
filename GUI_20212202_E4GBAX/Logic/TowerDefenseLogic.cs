@@ -13,6 +13,7 @@ namespace GUI_20212202_E4GBAX.Logic
     {
         public event EventHandler Changed;
         public List<Enemy> Enemies { get; set; }
+        public List<Tower> Towers { get; set; }
         public TowerItem[,] GameMatrix { get; set; }
         private Queue<string> levels;
         int[] startCenter;
@@ -21,7 +22,7 @@ namespace GUI_20212202_E4GBAX.Logic
             available, wall, path, position, start
         }
 
-        public TowerDefenseLogic()
+        public TowerDefenseLogic(SavedGame savedGame)
         {
             levels = new Queue<string>();
             var lvls = Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Levels"),
@@ -32,6 +33,22 @@ namespace GUI_20212202_E4GBAX.Logic
             }
             LoadNext(levels.Dequeue());
             Enemies = new List<Enemy>();
+            Towers=new List<Tower>();
+            if (savedGame.Enemies!=null)
+            {
+                foreach (var item in savedGame.Enemies)
+                {
+                    Enemies.Add(item);
+                }
+            }
+            if (savedGame.Towers!=null)
+            {
+                foreach (var item in savedGame.Towers)
+                {
+                    Towers.Add(item);
+                }
+            }
+            
         }
 
         private void LoadNext(string path)

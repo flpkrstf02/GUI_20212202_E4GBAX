@@ -1,4 +1,5 @@
 ﻿using GUI_20212202_E4GBAX.Logic;
+using GUI_20212202_E4GBAX.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +23,10 @@ namespace GUI_20212202_E4GBAX
     public partial class GameWindow : Window
     {
         TowerDefenseLogic logic;
-        public GameWindow()
+        public GameWindow(SavedGame savedGame)
         {
             InitializeComponent();
-            logic = new TowerDefenseLogic();
+            logic = new TowerDefenseLogic(savedGame);
             display.SetupModel(logic);
         }
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
