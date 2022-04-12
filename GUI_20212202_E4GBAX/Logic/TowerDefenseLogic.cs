@@ -21,7 +21,7 @@ namespace GUI_20212202_E4GBAX.Logic
         {
             available, wall, path, position, start
         }
-
+        SavedGame savedGame;
         public TowerDefenseLogic(SavedGame savedGame)
         {
             levels = new Queue<string>();
@@ -32,6 +32,7 @@ namespace GUI_20212202_E4GBAX.Logic
                 levels.Enqueue(item);
             }
             LoadNext(levels.Dequeue());
+            this.savedGame = savedGame;
             Enemies = new List<Enemy>();
             Towers=new List<Tower>();
             if (savedGame.Enemies!=null)
@@ -116,6 +117,17 @@ namespace GUI_20212202_E4GBAX.Logic
             {
                 item.Move(size);
             }
+        }
+        public SavedGame Save()
+        {
+            return new SavedGame()
+            {
+                Name=savedGame.Name,
+                Hp=savedGame.Hp,
+                Level=savedGame.Level,
+                Enemies=Enemies,
+                Towers=Towers
+            };
         }
     }
 }
