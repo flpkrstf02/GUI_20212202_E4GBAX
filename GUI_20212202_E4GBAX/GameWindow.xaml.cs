@@ -1,7 +1,9 @@
 ﻿using GUI_20212202_E4GBAX.Logic;
 using GUI_20212202_E4GBAX.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -61,9 +63,19 @@ namespace GUI_20212202_E4GBAX
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            List<SavedGame> savedGames = new List<SavedGame>();
+            if (File.Exists("savedgames.json"))
+            {
+                var inputs = JsonConvert.DeserializeObject<SavedGame[]>(File.ReadAllText("savedgames.json"));
+                foreach (var input in inputs)
+                {
+                    savedGames.Add(input);
+                }
+            }
             SavedGame save = logic.Save();
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string jsonString = JsonSerializer.Serialize(save, options);
+            savedGames.Add(save);
+            string jsonData=JsonConvert.SerializeObject(savedGames);
+            File.WriteAllText("savedgames.json", jsonData);
             
         }
     }

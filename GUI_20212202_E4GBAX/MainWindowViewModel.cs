@@ -3,10 +3,12 @@ using GUI_20212202_E4GBAX.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,12 +54,16 @@ namespace GUI_20212202_E4GBAX
         {
             this.logic = logic;
             SavedGames = new ObservableCollection<SavedGame>();
-            SavedGames.Add(new SavedGame
+            if (File.Exists("savedgames.json"))
             {
-                Name = "Kristóf",
-                Hp = 100,
-                Level = 1
-            });
+                var inputs = JsonConvert.DeserializeObject<SavedGame[]>(File.ReadAllText("savedgames.json"));
+                foreach (var input in inputs)
+                {
+                    SavedGames.Add(input);
+                }
+            }
+            string jsonData = JsonConvert.SerializeObject(SavedGames);
+            File.WriteAllText("savedgames.json", jsonData);
             StartGameCommand = new RelayCommand(
                 () => logic.StartGame()
                 );
