@@ -28,5 +28,7 @@ namespace GUI_20212202_E4GBAX
             InitializeComponent();
             img.ImageSource = new BitmapImage(new Uri(System.IO.Path.Combine("Images", "stonebg.jpg"), UriKind.RelativeOrAbsolute));
         }
+
+        private void CloseWindow_Click(object sender, RoutedEventArgs e) => Close();
     }
 }
