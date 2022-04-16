@@ -116,6 +116,7 @@ namespace GUI_20212202_E4GBAX.Logic
             foreach (var item in Enemies)
             {
                 item.Move(size);
+                //enemyLogic.EnemyMove(item);
             }
         }
         public SavedGame Save()
