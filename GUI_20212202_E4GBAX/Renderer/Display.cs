@@ -40,20 +40,20 @@ namespace GUI_20212202_E4GBAX.Renderer
                         switch (model.GameMatrix[i, j])
                         {
                             case TowerDefenseLogic.TowerItem.wall:
-                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "bg_ground_4.png"), UriKind.RelativeOrAbsolute)));
+                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "bg_ground_4.png"), UriKind.RelativeOrAbsolute)));
                                 break;
                             case TowerDefenseLogic.TowerItem.position:
-                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "bg_ground_0.png"), UriKind.RelativeOrAbsolute)));
-                                towerbrush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "tower1.png"), UriKind.RelativeOrAbsolute)));
+                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "bg_ground_0.png"), UriKind.RelativeOrAbsolute)));
+                                towerbrush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "tower1.png"), UriKind.RelativeOrAbsolute)));
                                 break;
                             case TowerDefenseLogic.TowerItem.path:
-                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "bg_ground_2.png"), UriKind.RelativeOrAbsolute)));
+                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "bg_ground_2.png"), UriKind.RelativeOrAbsolute)));
                                 break;
                             case TowerDefenseLogic.TowerItem.available:
-                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "bg_ground_0.png"), UriKind.RelativeOrAbsolute)));
+                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "bg_ground_0.png"), UriKind.RelativeOrAbsolute)));
                                 break;
                             case TowerDefenseLogic.TowerItem.start:
-                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "bg_ground_2.png"), UriKind.RelativeOrAbsolute)));
+                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "bg_ground_2.png"), UriKind.RelativeOrAbsolute)));
                                 break;
                             default:
                                 break;
@@ -68,7 +68,7 @@ namespace GUI_20212202_E4GBAX.Renderer
                 foreach (var item in model.Enemies)
                 {
                     ImageBrush brush = new ImageBrush();
-                    brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "Run2.png"), UriKind.RelativeOrAbsolute)));
+                    brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "Run2.png"), UriKind.RelativeOrAbsolute)));
                     drawingContext.DrawEllipse(brush, null, new Point(item.Center.X, item.Center.Y), 40, 40);
                 }
 
