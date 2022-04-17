@@ -55,6 +55,12 @@ namespace GUI_20212202_E4GBAX.Renderer
                             case TowerDefenseLogic.TowerItem.start:
                                 brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "bg_ground_2.png"), UriKind.RelativeOrAbsolute)));
                                 break;
+                            case TowerDefenseLogic.TowerItem.goal:
+                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "bg_ground_2.png"), UriKind.RelativeOrAbsolute)));
+                                break;
+                            case TowerDefenseLogic.TowerItem.crossroad:
+                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "bg_ground_2.png"), UriKind.RelativeOrAbsolute)));
+                                break;
                             default:
                                 break;
                         }

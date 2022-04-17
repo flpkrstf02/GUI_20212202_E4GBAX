@@ -19,7 +19,7 @@ namespace GUI_20212202_E4GBAX.Logic
         int[] startCenter;
         public enum TowerItem
         {
-            available, wall, path, position, start
+            available, wall, path, position, start, crossroad, goal
         }
         SavedGame savedGame;
         public TowerDefenseLogic(SavedGame savedGame)
@@ -79,6 +79,8 @@ namespace GUI_20212202_E4GBAX.Logic
                 case 'o': return TowerItem.available;
                 case 'p': return TowerItem.path;
                 case 's': return TowerItem.start;
+                case 'x': return TowerItem.crossroad;
+                case 'g': return TowerItem.goal;
                 default:
                     return TowerItem.position;
             }
