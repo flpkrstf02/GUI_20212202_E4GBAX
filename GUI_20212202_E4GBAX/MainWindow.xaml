@@ -26,8 +26,8 @@
         <StackPanel>
             <Button x:Name="start_bt" Content="New Game" Padding="10" Margin="0,50,0,0" Height="50" Width="150" Command="{Binding StartGameCommand}"/>
             <Button x:Name="load_bt" Content="Load Game" Padding="10" Margin="0,20,0,0" Height="50" Width="150" Command="{Binding LoadGameCommand}"/>
-            <Button x:Name="quit_bt" Content="Quit" Padding="10" Margin="0,20,0,0" Height="50" Width="150" Command="{Binding StartGameCommand}" Click="CloseWindow_Click" />
-            <TextBox Text="{Binding NameOfGamer}" Margin="0,20,0,0" Height="30" Width="150" Background="AliceBlue"/>
+            <Button x:Name="quit_bt" Content="Quit" Padding="10" Margin="0,20,0,0" Height="50" Width="150" Click="CloseWindow_Click" />
+            <TextBox Text="{Binding NameOfGamer,UpdateSourceTrigger=PropertyChanged}" Margin="0,20,0,0" Height="30" Width="150" Background="AliceBlue"/>
         </StackPanel>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>

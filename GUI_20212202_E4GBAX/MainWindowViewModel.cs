@@ -48,7 +48,6 @@ namespace GUI_20212202_E4GBAX
         public ICommand StartGameCommand { get; set; }
         public ICommand LoadGameCommand { get; set; }
         public ICommand DeleteGameCommand { get; set; }
-        public ICommand QuitCommand { get; set; }
         public static bool IsInDesignMode
         {
             get
@@ -70,7 +69,8 @@ namespace GUI_20212202_E4GBAX
             LoadSavesFromJson();
             
             StartGameCommand = new RelayCommand(
-                () => logic.StartGame(nameOfGamer)
+                () => logic.StartGame(NameOfGamer),
+                ()=> NameOfGamer!=null
                 );
             LoadGameCommand = new RelayCommand(
                 () => logic.LoadGame(SelectedSave),
