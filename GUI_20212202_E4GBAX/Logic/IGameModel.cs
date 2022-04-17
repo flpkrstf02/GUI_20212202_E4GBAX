@@ -13,5 +13,6 @@ namespace GUI_20212202_E4GBAX.Logic
         TowerItem[,] GameMatrix { get; set; }
         event EventHandler Changed;
         List<Enemy> Enemies { get; set; }
+        List<Tower> Towers { get; set; }
     }
 }

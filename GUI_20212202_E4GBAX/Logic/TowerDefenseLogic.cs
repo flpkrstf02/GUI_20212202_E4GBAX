@@ -16,6 +16,8 @@ namespace GUI_20212202_E4GBAX.Logic
         public List<Enemy> Enemies { get; set; }
         public List<Tower> Towers { get; set; }
         public TowerItem[,] GameMatrix { get; set; }
+       
+
         private Queue<string> levels;
         int[] startCenter;
         public enum TowerItem
