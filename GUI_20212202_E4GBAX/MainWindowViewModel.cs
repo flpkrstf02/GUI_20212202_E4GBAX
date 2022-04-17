@@ -31,10 +31,22 @@ namespace GUI_20212202_E4GBAX
                 (LoadGameCommand as RelayCommand).NotifyCanExecuteChanged();
             }
         }
+        private string nameOfGamer;
+
+        public string NameOfGamer
+        {
+            get { return nameOfGamer; }
+            set 
+            {
+                SetProperty(ref nameOfGamer, value);
+                (StartGameCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
+        }
 
 
         public ICommand StartGameCommand { get; set; }
         public ICommand LoadGameCommand { get; set; }
+        public ICommand DeleteGameCommand { get; set; }
         public ICommand QuitCommand { get; set; }
         public static bool IsInDesignMode
         {
@@ -65,12 +77,16 @@ namespace GUI_20212202_E4GBAX
             string jsonData = JsonConvert.SerializeObject(SavedGames);
             File.WriteAllText("savedgames.json", jsonData);
             StartGameCommand = new RelayCommand(
-                () => logic.StartGame()
+                () => logic.StartGame(nameOfGamer)
                 );
             LoadGameCommand = new RelayCommand(
                 () => logic.LoadGame(SelectedSave),
                 ()=>SelectedSave!=null
-                );
+               );
+            //DeleteGameCommand = new RelayCommand(
+            //    ()=>logic.DeleteGame(ref SavedGames,SelectedSave)
+                
+                //);
         }
     }
 }

@@ -9,9 +9,14 @@ namespace GUI_20212202_E4GBAX.Service
 {
     public class GameWindowViaWindow : IGameWindowService
     {
-        public void StartGame()
+        public void StartGame(string name)
         {
-            new GameWindow(new SavedGame()).ShowDialog();
+            new GameWindow(new SavedGame()
+            {
+                Name=name,
+                Hp=100,
+                Level=0
+            }).ShowDialog();
         }
         public void LoadGame(SavedGame savedGame)
         {
