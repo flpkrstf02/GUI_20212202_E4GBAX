@@ -29,6 +29,7 @@ namespace GUI_20212202_E4GBAX
             {
                 SetProperty(ref selectedSave, value);
                 (LoadGameCommand as RelayCommand).NotifyCanExecuteChanged();
+                (DeleteGameCommand as RelayCommand).NotifyCanExecuteChanged();
             }
         }
         private string nameOfGamer;
@@ -36,7 +37,7 @@ namespace GUI_20212202_E4GBAX
         public string NameOfGamer
         {
             get { return nameOfGamer; }
-            set 
+            set
             {
                 SetProperty(ref nameOfGamer, value);
                 (StartGameCommand as RelayCommand).NotifyCanExecuteChanged();
@@ -66,6 +67,22 @@ namespace GUI_20212202_E4GBAX
         {
             this.logic = logic;
             SavedGames = new ObservableCollection<SavedGame>();
+            LoadSavesFromJson();
+            
+            StartGameCommand = new RelayCommand(
+                () => logic.StartGame(nameOfGamer)
+                );
+            LoadGameCommand = new RelayCommand(
+                () => logic.LoadGame(SelectedSave),
+                () => SelectedSave != null
+               );
+            DeleteGameCommand = new RelayCommand(
+                () => DeleteGame(SelectedSave),
+                () => SelectedSave != null
+            );
+        }
+        private void LoadSavesFromJson()
+        {
             if (File.Exists("savedgames.json"))
             {
                 var inputs = JsonConvert.DeserializeObject<SavedGame[]>(File.ReadAllText("savedgames.json"));
@@ -76,17 +93,45 @@ namespace GUI_20212202_E4GBAX
             }
             string jsonData = JsonConvert.SerializeObject(SavedGames);
             File.WriteAllText("savedgames.json", jsonData);
-            StartGameCommand = new RelayCommand(
-                () => logic.StartGame(nameOfGamer)
-                );
-            LoadGameCommand = new RelayCommand(
-                () => logic.LoadGame(SelectedSave),
-                ()=>SelectedSave!=null
-               );
-            //DeleteGameCommand = new RelayCommand(
-            //    ()=>logic.DeleteGame(ref SavedGames,SelectedSave)
+        }
+        private void DeleteGame(SavedGame selectedSave)
+        {
+            DeleteGameFromList(selectedSave);
+            File.Delete("savedgames.json");
+            LoadSavesFromJson(selectedSave);
+        }
+        private void LoadSavesFromJson(SavedGame savedGame)
+        {
+            if (File.Exists("savedgames.json"))
+            {
+                var inputs = JsonConvert.DeserializeObject<SavedGame[]>(File.ReadAllText("savedgames.json"));
                 
-                //);
+                foreach (var input in inputs)
+                {
+                    if (input != savedGame)
+                    {
+                        SavedGames.Add(input);
+                    }
+                }
+            }
+            string jsonData = JsonConvert.SerializeObject(SavedGames);
+            File.WriteAllText("savedgames.json", jsonData);
+        }
+        private void DeleteGameFromList(SavedGame savedGame)
+        {
+            var helpList=new ObservableCollection<SavedGame>();
+            foreach (var game in SavedGames)
+            {
+                if (game!=savedGame)
+                {
+                    helpList.Add(game);
+                }
+            }
+            SavedGames.Clear();
+            foreach (var game in helpList)
+            {
+                SavedGames.Add(game);
+            }
         }
     }
 }
