@@ -9,7 +9,7 @@ namespace GUI_20212202_E4GBAX.Logic
 {
     public interface IGameWindowLogic
     {
-        void StartGame();
+        void StartGame(string name);
         void LoadGame(SavedGame savedGame);
     }
 }

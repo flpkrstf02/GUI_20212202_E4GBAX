@@ -15,9 +15,9 @@ namespace GUI_20212202_E4GBAX.Logic
         {
             this.service = service;
         }
-        public void StartGame()
+        public void StartGame(string name)
         {
-            service.StartGame();
+            service.StartGame(name);
         }
         public void LoadGame(SavedGame savedGame)
         {

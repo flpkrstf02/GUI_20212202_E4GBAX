@@ -9,7 +9,7 @@ namespace GUI_20212202_E4GBAX.Service
 {
     public interface IGameWindowService
     {
-        void StartGame();
+        void StartGame(string name);
         void LoadGame(SavedGame savedGame);
     }
 }
