@@ -12,6 +12,7 @@ namespace GUI_20212202_E4GBAX.Logic
     public class TowerDefenseLogic : IGameModel
     {
         public event EventHandler Changed;
+        public Player User = new Player();
         public List<Enemy> Enemies { get; set; }
         public List<Tower> Towers { get; set; }
         public TowerItem[,] GameMatrix { get; set; }
@@ -126,7 +127,8 @@ namespace GUI_20212202_E4GBAX.Logic
             return new SavedGame()
             {
                 Name=savedGame.Name,
-                Hp=savedGame.Hp,
+                Hp=User.HP,
+                Gold=User.Gold,
                 Level=savedGame.Level,
                 Enemies=Enemies,
                 Towers=Towers

@@ -30,6 +30,13 @@ namespace GUI_20212202_E4GBAX.Models
             get { return hp; }
             set { SetProperty(ref hp, value); }
         }
+        private int gold;
+
+        public int Gold
+        {
+            get { return gold; }
+            set { SetProperty(ref gold, value); }
+        }
         private IList<Enemy> enemies;
 
         public IList<Enemy> Enemies
