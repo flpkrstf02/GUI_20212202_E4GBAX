@@ -12,9 +12,15 @@ namespace GUI_20212202_E4GBAX.Logic
     {
         private IGameModel gameModel;
         private Vector tmpVect;
-        public EnemyLogic(IGameModel gm)
+        private Player user;
+        public EnemyLogic()
+        {
+
+        }
+        public EnemyLogic(IGameModel gm, Player player)
         {
             this.gameModel = gm;
+            this.user = player;
         }
         private void AvgEnemyMaker(Enemy e)
         {
@@ -63,9 +69,21 @@ namespace GUI_20212202_E4GBAX.Logic
                 e.Speed = tmpVect;
             }
         }
-        //public void EnemyGoalReached(Enemy e)
-        //{
-        //    if(gameModel.GameMatrix[(int)e.Center.X, (int)e.Center.Y] == )
-        //}
+        public void EnemyGoalReached(Enemy e)
+        {
+            if (gameModel.GameMatrix[(int)e.Center.X, (int)e.Center.Y] == TowerDefenseLogic.TowerItem.goal)
+            {
+                user.HP -= e.Damage;
+                gameModel.Enemies.Remove(e);
+            }
+        }
+        public void EnemyDeath(Enemy e)
+        {
+            if(e.Health <= 0)
+            {
+                user.Gold += e.Value;
+                gameModel.Enemies.Remove(e);
+            }
+        }
     }
 }

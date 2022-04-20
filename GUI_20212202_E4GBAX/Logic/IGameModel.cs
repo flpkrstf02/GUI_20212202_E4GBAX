@@ -14,5 +14,6 @@ namespace GUI_20212202_E4GBAX.Logic
         event EventHandler Changed;
         List<Enemy> Enemies { get; set; }
         List<Tower> Towers { get; set; }
+        public Player User { get; set; }
     }
 }

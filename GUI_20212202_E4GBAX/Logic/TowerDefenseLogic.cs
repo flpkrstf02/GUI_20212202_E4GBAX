@@ -11,15 +11,17 @@ namespace GUI_20212202_E4GBAX.Logic
 {
     public class TowerDefenseLogic : IGameModel
     {
+        IEnemyLogic elogic = new EnemyLogic();
         public event EventHandler Changed;
-        public Player User = new Player();
+        public Player User { get; set; }
         public List<Enemy> Enemies { get; set; }
         public List<Tower> Towers { get; set; }
         public TowerItem[,] GameMatrix { get; set; }
-       
-
+        
+        
         private Queue<string> levels;
         int[] startCenter;
+        
         public enum TowerItem
         {
             available, wall, path, position, start, crossroad, goal
@@ -27,6 +29,7 @@ namespace GUI_20212202_E4GBAX.Logic
         SavedGame savedGame;
         public TowerDefenseLogic(SavedGame savedGame)
         {
+            User = new Player();
             levels = new Queue<string>();
             var lvls = Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Levels"),
                 "*.txt");
@@ -38,6 +41,8 @@ namespace GUI_20212202_E4GBAX.Logic
             this.savedGame = savedGame;
             Enemies = new List<Enemy>();
             Towers=new List<Tower>();
+            User.Gold = savedGame.Gold;
+            User.HP = savedGame.Hp;
             if (savedGame.Enemies!=null)
             {
                 foreach (var item in savedGame.Enemies)
@@ -121,7 +126,7 @@ namespace GUI_20212202_E4GBAX.Logic
             foreach (var item in Enemies)
             {
                 item.Move(size);
-                //enemyLogic.EnemyMove(item);
+               // elogic.EnemyMove(item); !!!TODO bekötni egy GameModelt rendesen!!!
             }
         }
         public SavedGame Save()

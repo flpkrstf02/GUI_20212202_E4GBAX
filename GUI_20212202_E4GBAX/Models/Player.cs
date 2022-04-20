@@ -26,6 +26,6 @@ namespace GUI_20212202_E4GBAX.Models
             gold = 100;
             hp = 100;
         }
-        
+
     }
 }
