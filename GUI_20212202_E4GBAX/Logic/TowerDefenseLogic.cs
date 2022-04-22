@@ -17,7 +17,9 @@ namespace GUI_20212202_E4GBAX.Logic
         public List<Enemy> Enemies { get; set; }
         public List<Tower> Towers { get; set; }
         public TowerItem[,] GameMatrix { get; set; }
-        
+        double eHelperH;
+        double eHelperW;
+        Size sizeH;
         
         private Queue<string> levels;
         int[] startCenter;
@@ -119,14 +121,19 @@ namespace GUI_20212202_E4GBAX.Logic
             double rectWidth = size.Width / GameMatrix.GetLength(1);
             double x = startCenter[1] * rectWidth+(rectWidth/2);
             double y = startCenter[0] * rectHeight+(rectHeight/2);
+            this.eHelperH = rectHeight;
+            this.eHelperW = rectWidth;
             Enemies.Add(new Enemy(new Point(x,y), new Vector(0, 2)));
         }
         public void TimeStep(Size size)
         {
+            sizeH = size;
+            elogic = new EnemyLogic(GameMatrix, Enemies, User,eHelperH,eHelperW, sizeH);
             foreach (var item in Enemies)
             {
-                item.Move(size);
-               // elogic.EnemyMove(item); !!!TODO bekötni egy GameModelt rendesen!!!
+                elogic.EnemyMove(item);
+                //item.Move(size);
+                 //!!!TODO bekötni egy GameModelt rendesen!!!
             }
         }
         public SavedGame Save()
