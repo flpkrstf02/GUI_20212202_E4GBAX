@@ -123,7 +123,7 @@ namespace GUI_20212202_E4GBAX.Logic
             double y = startCenter[0] * rectHeight+(rectHeight/2);
             this.eHelperH = rectHeight;
             this.eHelperW = rectWidth;
-            Enemies.Add(new Enemy(new Point(x,y), new Vector(0, 2)));
+            Enemies.Add(new Enemy(new Point(x,y), new Vector(0, 0)));
         }
         public void TimeStep(Size size)
         {
