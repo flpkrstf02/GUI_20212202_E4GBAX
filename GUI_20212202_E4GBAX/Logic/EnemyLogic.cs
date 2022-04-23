@@ -103,7 +103,7 @@ namespace GUI_20212202_E4GBAX.Logic
                 enemies.Remove(e);
             if (user.HP <= 0)
             {
-
+                //TODO gameover
             }
             
         }
