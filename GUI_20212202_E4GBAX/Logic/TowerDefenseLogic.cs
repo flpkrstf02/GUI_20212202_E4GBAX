@@ -129,11 +129,10 @@ namespace GUI_20212202_E4GBAX.Logic
         {
             sizeH = size;
             elogic = new EnemyLogic(GameMatrix, Enemies, User,eHelperH,eHelperW, sizeH);
-            foreach (var item in Enemies)
+            
+            foreach (var item in Enemies.ToList())
             {
                 elogic.EnemyMove(item);
-                //item.Move(size);
-                 //!!!TODO bekötni egy GameModelt rendesen!!!
             }
         }
         public SavedGame Save()

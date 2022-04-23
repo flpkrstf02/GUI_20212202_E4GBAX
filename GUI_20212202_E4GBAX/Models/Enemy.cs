@@ -13,6 +13,7 @@ namespace GUI_20212202_E4GBAX.Models
         {
             Center = center;
             Speed = speed;
+            Damage = 10;
         }
 
         public Point Center { get; set; }

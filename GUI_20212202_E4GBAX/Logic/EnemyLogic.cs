@@ -101,6 +101,10 @@ namespace GUI_20212202_E4GBAX.Logic
         {
                 user.HP -= e.Damage;
                 enemies.Remove(e);
+            if (user.HP <= 0)
+            {
+
+            }
             
         }
         public void EnemyDeath(Enemy e)
