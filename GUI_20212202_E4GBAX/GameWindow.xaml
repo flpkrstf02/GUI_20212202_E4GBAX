@@ -4,9 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI_20212202_E4GBAX.Renderer"
+        xmlns:vm="clr-namespace:GUI_20212202_E4GBAX"
         mc:Ignorable="d"
         Title="GameWindow" Height="450" Width="800" SizeChanged="Window_SizeChanged" Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown" Closing="Window_Closing">
+    <Window.DataContext>
+        <vm:GameWindowViewModel/>
+    </Window.DataContext>
     <Grid x:Name="grid">
-        <local:Display x:Name="display" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <WrapPanel>
+            <Label Content="Select the level of tower" HorizontalAlignment="Center" VerticalAlignment="Center" Height="35"/>
+            <ComboBox x:Name="cb_tower" ItemsSource="{Binding TowerVariety}" SelectedItem="{Binding SelectedTower}" SelectedIndex="0">
+                
+            </ComboBox>
+        </WrapPanel>
+        <local:Display x:Name="display" Grid.Row="1"/>
     </Grid>
 </Window>

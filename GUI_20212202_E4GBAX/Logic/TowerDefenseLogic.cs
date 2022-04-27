@@ -26,7 +26,7 @@ namespace GUI_20212202_E4GBAX.Logic
         
         public enum TowerItem
         {
-            available, wall, path, position, start, crossroad, goal
+            available, wall, path, position, start, crossroad, goal,lvl1tower,lvl2tower,lvl3tower
         }
         SavedGame savedGame;
         public TowerDefenseLogic(SavedGame savedGame)
@@ -91,11 +91,13 @@ namespace GUI_20212202_E4GBAX.Logic
                 case 's': return TowerItem.start;
                 case 'x': return TowerItem.crossroad;
                 case 'g': return TowerItem.goal;
+                case '1': return TowerItem.lvl1tower;
+                case '2': return TowerItem.lvl2tower;
                 default:
-                    return TowerItem.position;
+                    return TowerItem.lvl3tower;
             }
         }
-        public void TowerPosition(Size size, Point p)
+        public void TowerPosition(Size size, Point p, int towerlvl)
         {
             double x = p.X;
             double y = p.Y;
@@ -109,7 +111,18 @@ namespace GUI_20212202_E4GBAX.Logic
                     {
                         if (GameMatrix[i, j] == TowerItem.available)
                         {
-                            GameMatrix[i, j] = TowerItem.position;
+                            switch (towerlvl)
+                            {
+                                case 1:
+                                    GameMatrix[i, j] = TowerItem.lvl1tower;
+                                    break;
+                                case 2:
+                                    GameMatrix[i, j] = TowerItem.lvl2tower;
+                                    break;
+                                case 3:
+                                    GameMatrix[i, j] = TowerItem.lvl3tower;
+                                    break;
+                            }
                         }
                     }
                 }

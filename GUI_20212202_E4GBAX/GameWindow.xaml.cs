@@ -55,7 +55,7 @@ namespace GUI_20212202_E4GBAX
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point p = e.GetPosition(grid);
-            logic.TowerPosition(new Size(grid.ActualWidth, grid.ActualHeight), p);
+            logic.TowerPosition(new Size(grid.ActualWidth, grid.ActualHeight), p,int.Parse(cb_tower.SelectedItem.ToString()));
             logic.EnemySpawner(new Size(grid.ActualWidth, grid.ActualHeight));
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
             display.InvalidateVisual();

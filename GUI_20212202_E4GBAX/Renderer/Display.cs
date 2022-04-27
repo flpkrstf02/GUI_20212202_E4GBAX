@@ -46,6 +46,18 @@ namespace GUI_20212202_E4GBAX.Renderer
                                 brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "bg_ground_0.png"), UriKind.RelativeOrAbsolute)));
                                 towerbrush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "tower1.png"), UriKind.RelativeOrAbsolute)));
                                 break;
+                            case TowerDefenseLogic.TowerItem.lvl1tower:
+                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "bg_ground_0.png"), UriKind.RelativeOrAbsolute)));
+                                towerbrush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "tower1.png"), UriKind.RelativeOrAbsolute)));
+                                break;
+                            case TowerDefenseLogic.TowerItem.lvl2tower:
+                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "bg_ground_0.png"), UriKind.RelativeOrAbsolute)));
+                                towerbrush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "tower2.png"), UriKind.RelativeOrAbsolute)));
+                                break;
+                            case TowerDefenseLogic.TowerItem.lvl3tower:
+                                brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "bg_ground_0.png"), UriKind.RelativeOrAbsolute)));
+                                towerbrush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "tower3.png"), UriKind.RelativeOrAbsolute)));
+                                break;
                             case TowerDefenseLogic.TowerItem.path:
                                 brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "bg_ground_2.png"), UriKind.RelativeOrAbsolute)));
                                 break;
