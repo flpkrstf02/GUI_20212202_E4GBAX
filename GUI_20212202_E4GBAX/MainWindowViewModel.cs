@@ -21,6 +21,7 @@ namespace GUI_20212202_E4GBAX
     {
         IGameWindowLogic logic;
         public ObservableCollection<SavedGame> SavedGames { get; set; }
+        
         private SavedGame selectedSave;
         public SavedGame SelectedSave
         {
@@ -33,7 +34,6 @@ namespace GUI_20212202_E4GBAX
             }
         }
         private string nameOfGamer;
-
         public string NameOfGamer
         {
             get { return nameOfGamer; }
@@ -43,8 +43,8 @@ namespace GUI_20212202_E4GBAX
                 (StartGameCommand as RelayCommand).NotifyCanExecuteChanged();
             }
         }
-
-
+        
+        
         public ICommand StartGameCommand { get; set; }
         public ICommand LoadGameCommand { get; set; }
         public ICommand DeleteGameCommand { get; set; }
@@ -66,20 +66,24 @@ namespace GUI_20212202_E4GBAX
         {
             this.logic = logic;
             SavedGames = new ObservableCollection<SavedGame>();
-            LoadSavesFromJson();
             
+
+            LoadSavesFromJson();
+
             StartGameCommand = new RelayCommand(
                 () => logic.StartGame(NameOfGamer),
-                ()=> NameOfGamer!=null
+                () => NameOfGamer != null
                 );
             LoadGameCommand = new RelayCommand(
                 () => logic.LoadGame(SelectedSave),
                 () => SelectedSave != null
-               );
+                );
             DeleteGameCommand = new RelayCommand(
                 () => DeleteGame(SelectedSave),
                 () => SelectedSave != null
-            );
+                );
+            
+            
         }
         private void LoadSavesFromJson()
         {
@@ -105,7 +109,7 @@ namespace GUI_20212202_E4GBAX
             if (File.Exists("savedgames.json"))
             {
                 var inputs = JsonConvert.DeserializeObject<SavedGame[]>(File.ReadAllText("savedgames.json"));
-                
+
                 foreach (var input in inputs)
                 {
                     if (input != savedGame)
@@ -119,10 +123,10 @@ namespace GUI_20212202_E4GBAX
         }
         private void DeleteGameFromList(SavedGame savedGame)
         {
-            var helpList=new ObservableCollection<SavedGame>();
+            var helpList = new ObservableCollection<SavedGame>();
             foreach (var game in SavedGames)
             {
-                if (game!=savedGame)
+                if (game != savedGame)
                 {
                     helpList.Add(game);
                 }

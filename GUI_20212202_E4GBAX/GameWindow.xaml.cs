@@ -29,6 +29,7 @@ namespace GUI_20212202_E4GBAX
         public GameWindow(SavedGame savedGame)
         {
             InitializeComponent();
+            img.ImageSource = new BitmapImage(new Uri(System.IO.Path.Combine("Assets", "bg_ground_4.png"), UriKind.RelativeOrAbsolute));
             logic = new TowerDefenseLogic(savedGame);
             display.SetupModel(logic);
         }
@@ -78,5 +79,7 @@ namespace GUI_20212202_E4GBAX
             File.WriteAllText("savedgames.json", jsonData);
             
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e) => Close();
     }
 }

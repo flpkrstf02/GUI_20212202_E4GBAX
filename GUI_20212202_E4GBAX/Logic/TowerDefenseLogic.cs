@@ -23,7 +23,21 @@ namespace GUI_20212202_E4GBAX.Logic
         
         private Queue<string> levels;
         int[] startCenter;
-        
+        public int HP
+        {
+            get
+            {
+                return User.HP;
+            }
+        }
+        public int Gold
+        {
+            get
+            {
+                return User.Gold;
+            }
+        }
+
         public enum TowerItem
         {
             available, wall, path, position, start, crossroad, goal,lvl1tower,lvl2tower,lvl3tower

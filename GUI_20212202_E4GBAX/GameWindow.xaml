@@ -10,17 +10,32 @@
     <Window.DataContext>
         <vm:GameWindowViewModel/>
     </Window.DataContext>
-    <Grid x:Name="grid">
+    <Grid x:Name="grid" >
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
-        <WrapPanel>
-            <Label Content="Select the level of tower" HorizontalAlignment="Center" VerticalAlignment="Center" Height="35"/>
-            <ComboBox x:Name="cb_tower" ItemsSource="{Binding TowerVariety}" SelectedItem="{Binding SelectedTower}" SelectedIndex="0">
+        <Grid Grid.Row="0" >
+            <Grid.Background>
+                <ImageBrush x:Name="img" Stretch="Fill"/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Select the level of tower" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Foreground="LightGoldenrodYellow" FontWeight="Bold" FontSize="12" Grid.Column="0"/>
+            <ComboBox x:Name="cb_tower" ItemsSource="{Binding TowerVariety}" SelectedItem="{Binding SelectedTower}" SelectedIndex="0" Grid.Column="1" Opacity="0.3" OpacityMask="SaddleBrown">
                 
             </ComboBox>
-        </WrapPanel>
+            <Label Content="{Binding HP}" ContentStringFormat="HP: {0}" Foreground="LightGoldenrodYellow" FontWeight="Bold" FontSize="20" Grid.Column="3"/>
+            <Label Content="{Binding Gold}" ContentStringFormat="Gold: {0}" Foreground="LightGoldenrodYellow" FontWeight="Bold" FontSize="20" Grid.Column="4"/>
+            <Button Content="Quit" Click="Button_Click" FontSize="15" Foreground="LightGoldenrodYellow" Grid.Column="6" Background="SaddleBrown"/>
+        </Grid>
         <local:Display x:Name="display" Grid.Row="1"/>
     </Grid>
 </Window>
