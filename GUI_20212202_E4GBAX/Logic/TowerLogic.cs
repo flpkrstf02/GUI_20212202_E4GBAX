@@ -11,7 +11,7 @@ namespace GUI_20212202_E4GBAX.Logic
 {
     public class TowerLogic: ITowerLogic
     {
-        private List<string> bullet;
+        
 
         public TowerLogic()
         { 
@@ -41,6 +41,18 @@ namespace GUI_20212202_E4GBAX.Logic
             t.range = 4;
             t.damage = 10;
         }
+
+        //megérinti az egyik enemyt
+        public void TouchTower(Tower t, Enemy e)
+        {
+           
+        }
+
+        
+
+
+
+
 
 
 
