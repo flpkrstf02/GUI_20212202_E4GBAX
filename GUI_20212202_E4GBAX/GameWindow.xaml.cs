@@ -32,6 +32,7 @@ namespace GUI_20212202_E4GBAX
             img.ImageSource = new BitmapImage(new Uri(System.IO.Path.Combine("Assets", "bg_ground_4.png"), UriKind.RelativeOrAbsolute));
             logic = new TowerDefenseLogic(savedGame);
             display.SetupModel(logic);
+            
         }
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
@@ -46,9 +47,12 @@ namespace GUI_20212202_E4GBAX
             dt.Tick += (sender, eventargs) =>
             {
                 logic.TimeStep(new Size(grid.ActualWidth, grid.ActualHeight));
+                lb_hp.Content = logic.HP;
+                lb_gold.Content = logic.Gold;
                 display.InvalidateVisual();
             };
             dt.Start();
+            
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
             display.InvalidateVisual();
         }

@@ -32,8 +32,8 @@
             <ComboBox x:Name="cb_tower" ItemsSource="{Binding TowerVariety}" SelectedItem="{Binding SelectedTower}" SelectedIndex="0" Grid.Column="1" Opacity="0.3" OpacityMask="SaddleBrown">
                 
             </ComboBox>
-            <Label Content="{Binding HP}" ContentStringFormat="HP: {0}" Foreground="LightGoldenrodYellow" FontWeight="Bold" FontSize="20" Grid.Column="3"/>
-            <Label Content="{Binding Gold}" ContentStringFormat="Gold: {0}" Foreground="LightGoldenrodYellow" FontWeight="Bold" FontSize="20" Grid.Column="4"/>
+            <Label x:Name="lb_hp"  ContentStringFormat="HP: {0}" Foreground="LightGoldenrodYellow" FontWeight="Bold" FontSize="20" Grid.Column="3"/>
+            <Label x:Name="lb_gold"  ContentStringFormat="Gold: {0}" Foreground="LightGoldenrodYellow" FontWeight="Bold" FontSize="20" Grid.Column="4"/>
             <Button Content="Quit" Click="Button_Click" FontSize="15" Foreground="LightGoldenrodYellow" Grid.Column="6" Background="SaddleBrown"/>
         </Grid>
         <local:Display x:Name="display" Grid.Row="1"/>
