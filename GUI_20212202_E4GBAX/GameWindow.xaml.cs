@@ -50,12 +50,18 @@ namespace GUI_20212202_E4GBAX
             {
                 logic.TimeStep(new Size(grid.ActualWidth, grid.ActualHeight));
                 lb_hp.Content = logic.HP;
+                lb_gold.Content = logic.Gold;
+                display.InvalidateVisual();
                 if (logic.GameOver())
                 {
                     Close(); //TODO valami varázs ablak hogy Game Over
                 }
             };
             dt.Start();
+
+            display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
+            display.InvalidateVisual();
+
             DispatcherTimer tT = new DispatcherTimer();
             tT.Interval = TimeSpan.FromMilliseconds(100);
             tT.Tick += (sender, eventargs) =>
@@ -63,6 +69,10 @@ namespace GUI_20212202_E4GBAX
                 logic.TowerAttack();
             };
             tT.Start();
+
+            display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
+            display.InvalidateVisual();
+
             DispatcherTimer et = new DispatcherTimer();
             et.Interval = TimeSpan.FromMilliseconds(1000);
             et.Tick += (sender, eventargs) =>
@@ -71,10 +81,11 @@ namespace GUI_20212202_E4GBAX
             };
             et.Start();
 
-            
-
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
             display.InvalidateVisual();
+
+
+
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

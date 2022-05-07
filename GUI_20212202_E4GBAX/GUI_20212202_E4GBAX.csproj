@@ -23,6 +23,7 @@
     <None Remove="Assets\cannon7.png" />
     <None Remove="Assets\cannon8.png" />
     <None Remove="Assets\cannon9.png" />
+    <None Remove="Assets\menubg1.jpg" />
     <None Remove="Assets\Run2.png" />
     <None Remove="Assets\stonebg.jpg" />
     <None Remove="Assets\tower1.png" />
@@ -78,6 +79,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\cannon9.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\menubg1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Run2.png">
