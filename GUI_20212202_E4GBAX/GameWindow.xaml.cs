@@ -32,7 +32,7 @@ namespace GUI_20212202_E4GBAX
             InitializeComponent();
             this.savedGame = savedGame;
             img.ImageSource = new BitmapImage(new Uri(System.IO.Path.Combine("Assets", "bg_ground_4.png"), UriKind.RelativeOrAbsolute));
-            logic = new TowerDefenseLogic(savedGame);
+            logic = new TowerDefenseLogic(savedGame,(new Size(grid.ActualWidth,grid.ActualHeight)));
             display.SetupModel(logic);
 
         }
@@ -56,6 +56,13 @@ namespace GUI_20212202_E4GBAX
                 }
             };
             dt.Start();
+            DispatcherTimer tT = new DispatcherTimer();
+            tT.Interval = TimeSpan.FromMilliseconds(100);
+            tT.Tick += (sender, eventargs) =>
+            {
+                logic.TowerAttack();
+            };
+            tT.Start();
             DispatcherTimer et = new DispatcherTimer();
             et.Interval = TimeSpan.FromMilliseconds(1000);
             et.Tick += (sender, eventargs) =>
@@ -63,6 +70,8 @@ namespace GUI_20212202_E4GBAX
                 logic.EnemySpawner(new Size(grid.ActualWidth, grid.ActualHeight));
             };
             et.Start();
+
+            
 
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
             display.InvalidateVisual();

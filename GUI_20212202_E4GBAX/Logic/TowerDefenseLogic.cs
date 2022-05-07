@@ -20,6 +20,8 @@ namespace GUI_20212202_E4GBAX.Logic
         public TowerItem[,] GameMatrix { get; set; }
         double eHelperH;
         double eHelperW;
+        double rectHeight;
+        double rectWidth;
         Size sizeH;
         int Enumbers = 0;
         int MaxEnemies = 10;
@@ -46,8 +48,10 @@ namespace GUI_20212202_E4GBAX.Logic
             available, wall, path, position, start, crossroad, goal,lvl1tower,lvl2tower,lvl3tower
         }
         SavedGame savedGame;
-        public TowerDefenseLogic(SavedGame savedGame)
+        public TowerDefenseLogic(SavedGame savedGame, Size size)
         {
+            this.sizeH = size;
+            
             User = new Player();
             levels = new string[5];
             int i = 0;
@@ -60,6 +64,8 @@ namespace GUI_20212202_E4GBAX.Logic
             }
             LoadNext(levels[currentLevel]);
             currentLevel++;
+            this.rectHeight = size.Height / GameMatrix.GetLength(0);
+            this.rectWidth = size.Width / GameMatrix.GetLength(1);
             this.savedGame = savedGame;
             Enemies = new List<Enemy>();
             Towers=new List<Tower>();
@@ -165,7 +171,8 @@ namespace GUI_20212202_E4GBAX.Logic
         {
             sizeH = size;
             elogic = new EnemyLogic(GameMatrix, Enemies, User,eHelperH,eHelperW, sizeH);
-            
+            this.rectWidth = size.Width;
+            this.rectHeight = size.Height;
             foreach (var item in Enemies.ToList())
             {
                 elogic.EnemyMove(item);
@@ -203,9 +210,50 @@ namespace GUI_20212202_E4GBAX.Logic
             if (User.HP <= 0) { return true; }
             else return false;
         }
-        public void TowerAttack(Tower t, Enemy e)
+        private void towerAttack(Tower t, Enemy e)
         {
-           // if()
+            int tX = (int)(t.Center.X/ (rectWidth+(rectWidth/2)));
+            int tY = (int)(t.Center.Y / (rectHeight + (rectHeight / 2)));
+            int eX = (int)(e.Center.X / (rectWidth + (rectWidth / 2)));
+            int eY = (int)(e.Center.Y / (rectHeight + (rectHeight / 2)));
+            if(Math.Abs(tX - eX) < t.range && Math.Abs(tY - eY) < t.range)
+            {
+                e.Health -= t.damage;
+                if(e.Health <= 0)
+                {
+                    elogic.EnemyDeath(e);
+                }
+            }
+        }
+
+        public void TowerAttack()
+        {
+            int closest = 100000;
+            int tX;
+            int tY;
+            int eX;
+            int eY;
+            int closestIdx = 0;
+            int idx = 0;
+            foreach (var item in Towers)
+            {
+                tX = (int)(item.Center.X / (rectWidth + (rectWidth / 2)));
+                tY = (int)(item.Center.Y / (rectHeight + (rectHeight / 2)));
+
+                foreach (var item2 in Enemies)
+                {
+                    eX = (int)(item2.Center.X / (rectWidth + (rectWidth / 2)));
+                    eY = (int)(item2.Center.Y / (rectHeight + (rectHeight / 2)));
+                    if ((int)(Math.Sqrt(Math.Pow(eX - tX, 2) + Math.Pow(eY - tY, 2))) < closest)
+                    {
+                        closest = (int)(Math.Sqrt(Math.Pow(eX - tX, 2) + Math.Pow(eY - tY, 2)));
+                        closestIdx = idx;
+                    }
+                    idx++;
+                }
+                if(Enemies.Count > 0)
+                towerAttack(item,Enemies[closestIdx]);
+            }
         }
         public SavedGame Save()
         {

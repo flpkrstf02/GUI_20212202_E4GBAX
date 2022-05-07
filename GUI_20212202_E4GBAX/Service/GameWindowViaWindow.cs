@@ -15,7 +15,8 @@ namespace GUI_20212202_E4GBAX.Service
             {
                 Name=name,
                 Hp=100,
-                Level=0
+                Level=0,
+                Gold = 200
             }).ShowDialog();
         }
         public void LoadGame(SavedGame savedGame)
