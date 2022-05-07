@@ -33,6 +33,10 @@
     <None Remove="Assets\tower5.png" />
     <None Remove="Assets\tower6.png" />
     <None Remove="Levels\level0.txt" />
+    <None Remove="Levels\level1.txt" />
+    <None Remove="Levels\level2.txt" />
+    <None Remove="Levels\level3.txt" />
+    <None Remove="Levels\level4.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -109,6 +113,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Levels\level0.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\level1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\level2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\level3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\level4.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

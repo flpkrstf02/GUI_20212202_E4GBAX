@@ -62,6 +62,17 @@ namespace GUI_20212202_E4GBAX
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
             display.InvalidateVisual();
 
+            DispatcherTimer et = new DispatcherTimer();
+            et.Interval = TimeSpan.FromMilliseconds(1000);
+            et.Tick += (sender, eventargs) =>
+            {
+                logic.EnemySpawner(new Size(grid.ActualWidth, grid.ActualHeight));
+            };
+            et.Start();
+
+            display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
+            display.InvalidateVisual();
+
             DispatcherTimer tT = new DispatcherTimer();
             tT.Interval = TimeSpan.FromMilliseconds(100);
             tT.Tick += (sender, eventargs) =>
@@ -73,16 +84,7 @@ namespace GUI_20212202_E4GBAX
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
             display.InvalidateVisual();
 
-            DispatcherTimer et = new DispatcherTimer();
-            et.Interval = TimeSpan.FromMilliseconds(1000);
-            et.Tick += (sender, eventargs) =>
-            {
-                logic.EnemySpawner(new Size(grid.ActualWidth, grid.ActualHeight));
-            };
-            et.Start();
-
-            display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
-            display.InvalidateVisual();
+            
 
 
 

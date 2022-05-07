@@ -23,11 +23,12 @@ namespace GUI_20212202_E4GBAX.Logic
         double rectHeight;
         double rectWidth;
         Size sizeH;
-        int Enumbers = 0;
-        int MaxEnemies = 10;
+        int Enumbers = 1;
+        int MaxEnemies = 3;
         private string[] levels;
         int[] startCenter;
-        int currentLevel = 0;
+        int currentLevel;
+        int[,] moveH = new int[7, 7];
         public int HP
         {
             get
@@ -62,8 +63,8 @@ namespace GUI_20212202_E4GBAX.Logic
                 levels[i] = item;
                 i++;
             }
+            currentLevel = savedGame.Level;
             LoadNext(levels[currentLevel]);
-            currentLevel++;
             //this.rectHeight = size.Height / GameMatrix.GetLength(0);
             //this.rectWidth = size.Width / GameMatrix.GetLength(1);
             this.savedGame = savedGame;
@@ -184,34 +185,36 @@ namespace GUI_20212202_E4GBAX.Logic
         public void TimeStep(Size size)
         {
             sizeH = size;
-            elogic = new EnemyLogic(GameMatrix, Enemies, User,eHelperH,eHelperW, sizeH);
+            
             this.rectWidth = size.Width / GameMatrix.GetLength(1);
-            this.rectHeight = size.Height / GameMatrix.GetLength(0); ;
+            this.rectHeight = size.Height / GameMatrix.GetLength(0);
+            elogic = new EnemyLogic(GameMatrix, Enemies, User, rectHeight, rectWidth, sizeH);
             foreach (var item in Enemies.ToList())
             {
-                elogic.EnemyMove(item);
+                elogic.EnemyMove(item, moveH);
             }
             
         }
         public void EnemySpawner(Size size)
         {
             Enemy e = new Enemy();
-            double rectHeight = size.Height / GameMatrix.GetLength(0);
-            double rectWidth = size.Width / GameMatrix.GetLength(1);
             double x = startCenter[1] * rectWidth+(rectWidth/2);
             double y = startCenter[0] * rectHeight+(rectHeight/2);
-            Enumbers++;
-            if(Enumbers <= MaxEnemies)
+            e.prevMov = 0;
+            if(Enumbers < MaxEnemies)
             {
-                if(Enumbers%10 == 0)
+                
+                if (Enumbers%10 == 0)
                 {
                     if(Enumbers%2 == 0)
                     {
                         e = elogic.BossEnemyMaker(x, y, 1);
+                        Enumbers++;
                     }
                     else
                     {
                         e = elogic.BossEnemyMaker(x, y, 0);
+                        Enumbers++;
                     }
                     
                     
@@ -221,10 +224,12 @@ namespace GUI_20212202_E4GBAX.Logic
                     if(Enumbers % 2 == 0)
                     {
                         Enemies.Add(elogic.StrongEnemyMaker(x, y,1));
+                        Enumbers++;
                     }
                     else
                     {
                         Enemies.Add(elogic.StrongEnemyMaker(x, y, 0));
+                        Enumbers++;
                     }
                     
                 }
@@ -233,10 +238,12 @@ namespace GUI_20212202_E4GBAX.Logic
                     if(Enumbers%2 == 0)
                     {
                         Enemies.Add(elogic.AvgEnemyMaker(x, y,1));
+                        Enumbers++;
                     }
                     else
                     {
                         Enemies.Add(elogic.AvgEnemyMaker(x,y,0));
+                        Enumbers++;
                     }
                     
                 }
@@ -252,18 +259,30 @@ namespace GUI_20212202_E4GBAX.Logic
         {
             //int tX = (int)(t.Center.X/ (rectWidth+(rectWidth/2)));
             //int tY = (int)(t.Center.Y / (rectHeight + (rectHeight / 2)));
-            int eX = (int)(e.Center.X / (rectWidth + (rectWidth / 2))+0.6);
-            int eY = (int)(e.Center.Y / (rectHeight + (rectHeight / 2))+1.05);
-            if(Math.Abs(t.centerIdxX - eX) <= t.range && Math.Abs(t.centerIdxY - eY) <= t.range)
+            int eX = (int)(e.Center.X / (rectWidth + (rectWidth / 2)));// + 0.6);
+            int eY = (int)(e.Center.Y / (rectHeight + (rectHeight / 2)));// + 1.05);
+            if (Math.Abs(t.centerIdxX - eX) <= t.range && Math.Abs(t.centerIdxY - eY) <= t.range)
             {
                 e.Health -= t.damage;
-                if(e.Health <= 0)
+                if (e.Health <= 0)
                 {
                     elogic.EnemyDeath(e);
                 }
             }
         }
-
+        private void NextLevel()
+        {
+            currentLevel++;
+            Enemies = new List<Enemy>();
+            Towers = new List<Tower>();
+            moveH = new int[7,7];  
+            if(currentLevel < 5)
+            LoadNext(levels[currentLevel]);
+            else
+            {
+                
+            }
+        }
         public void TowerAttack()
         {
             int closest = 100000;
@@ -280,8 +299,8 @@ namespace GUI_20212202_E4GBAX.Logic
 
                 foreach (var item2 in Enemies)
                 {
-                    eX = (int)(item2.Center.X / (rectWidth + (rectWidth / 2))+0.6);
-                    eY = (int)(item2.Center.Y / (rectHeight + (rectHeight / 2))+1.05);
+                    eX = (int)(item2.Center.X / (rectWidth + (rectWidth / 2)));// +0.6);
+                    eY = (int)(item2.Center.Y / (rectHeight + (rectHeight / 2)));// +1.05);
                     if ((int)(Math.Sqrt(Math.Pow(eX - item.centerIdxX, 2) + Math.Pow(eY - item.centerIdxY, 2))) < closest)
                     {
                         closest = (int)(Math.Sqrt(Math.Pow(eX - item.centerIdxX, 2) + Math.Pow(eY - item.centerIdxY, 2)));
@@ -297,6 +316,12 @@ namespace GUI_20212202_E4GBAX.Logic
                     }
 
                 }
+                
+            }
+            if(Enemies.Count == 0 && Enumbers == MaxEnemies)
+            {
+                Enumbers = 0;
+                NextLevel();
             }
         }
         public SavedGame Save()

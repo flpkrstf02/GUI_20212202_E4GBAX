@@ -19,6 +19,7 @@ namespace GUI_20212202_E4GBAX.Models
             Speed = speed;
             Damage = 10;
         }
+        public int prevMov { get; set; }   
         public int MS { get; set; }
         public Point Center { get; set; }
 
@@ -27,7 +28,8 @@ namespace GUI_20212202_E4GBAX.Models
         public int Damage { get; set;}
         
         public int Value { get; set; }
-        public int EndGoal { get; set; }   
+        public int EndGoal { get; set; }
+        public int[,] usedP;
         public bool Move(Size area)
         {
             //hova kerülne a lépéskor a lövedék
