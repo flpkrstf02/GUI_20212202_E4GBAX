@@ -24,7 +24,7 @@ namespace GUI_20212202_E4GBAX.Logic
         double rectWidth;
         Size sizeH;
         int Enumbers = 1;
-        int MaxEnemies = 3;
+        int MaxEnemies = 15;
         private string[] levels;
         int[] startCenter;
         int currentLevel;
@@ -259,8 +259,8 @@ namespace GUI_20212202_E4GBAX.Logic
         {
             //int tX = (int)(t.Center.X/ (rectWidth+(rectWidth/2)));
             //int tY = (int)(t.Center.Y / (rectHeight + (rectHeight / 2)));
-            int eX = (int)(e.Center.X / (rectWidth + (rectWidth / 2)));// + 0.6);
-            int eY = (int)(e.Center.Y / (rectHeight + (rectHeight / 2)));// + 1.05);
+            int eX = (int)((e.Center.X / rectWidth)-0.5);// + (rectWidth / 2)));// + 0.6);
+            int eY = (int)((e.Center.Y / rectHeight)-0.5);// + (rectHeight / 2)));// + 1.05);
             if (Math.Abs(t.centerIdxX - eX) <= t.range && Math.Abs(t.centerIdxY - eY) <= t.range)
             {
                 e.Health -= t.damage;
@@ -299,8 +299,8 @@ namespace GUI_20212202_E4GBAX.Logic
 
                 foreach (var item2 in Enemies)
                 {
-                    eX = (int)(item2.Center.X / (rectWidth + (rectWidth / 2)));// +0.6);
-                    eY = (int)(item2.Center.Y / (rectHeight + (rectHeight / 2)));// +1.05);
+                    eX = (int)((item2.Center.X / rectWidth));// + (rectWidth / 2)));// +0.6);
+                    eY = (int)((item2.Center.Y / rectHeight));// + (rectHeight / 2)));// +1.05);
                     if ((int)(Math.Sqrt(Math.Pow(eX - item.centerIdxX, 2) + Math.Pow(eY - item.centerIdxY, 2))) < closest)
                     {
                         closest = (int)(Math.Sqrt(Math.Pow(eX - item.centerIdxX, 2) + Math.Pow(eY - item.centerIdxY, 2)));
