@@ -27,6 +27,7 @@ namespace GUI_20212202_E4GBAX.Models
         public int Damage { get; set;}
         
         public int Value { get; set; }
+        public int EndGoal { get; set; }   
         public bool Move(Size area)
         {
             //hova kerülne a lépéskor a lövedék

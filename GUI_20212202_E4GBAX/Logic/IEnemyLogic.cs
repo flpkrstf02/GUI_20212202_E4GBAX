@@ -4,11 +4,11 @@ namespace GUI_20212202_E4GBAX.Logic
 {
     public interface IEnemyLogic
     {
-        Enemy AvgEnemyMaker(double x, double y);
-        Enemy BossEnemyMaker(double x, double y);
+        Enemy AvgEnemyMaker(double x, double y, int goal);
+        Enemy BossEnemyMaker(double x, double y, int goal);
         void EnemyDeath(Enemy e);
         void EnemyGoalReached(Enemy e);
         void EnemyMove(Enemy e);
-        Enemy StrongEnemyMaker(double x, double y);
+        Enemy StrongEnemyMaker(double x, double y, int goal);
     }
 }

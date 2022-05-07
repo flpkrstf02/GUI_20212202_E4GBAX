@@ -33,7 +33,7 @@ namespace GUI_20212202_E4GBAX.Logic
             this.width = width;
             this.size = size;
         }
-        public Enemy AvgEnemyMaker(double x, double y)
+        public Enemy AvgEnemyMaker(double x, double y, int goal)
         {
             Enemy e = new Enemy();
             tmpVect = e.Speed;
@@ -45,9 +45,10 @@ namespace GUI_20212202_E4GBAX.Logic
             e.Value = 10;
             e.Center = new Point(x, y);
             e.MS = 10;
+            e.EndGoal = goal;
             return e;
         }
-        public Enemy StrongEnemyMaker(double x, double y)
+        public Enemy StrongEnemyMaker(double x, double y,int goal)
         {
             Enemy e = new Enemy();
             tmpVect = e.Speed;
@@ -59,10 +60,11 @@ namespace GUI_20212202_E4GBAX.Logic
             e.Value = 25;
             e.Center = new Point(x, y);
             e.MS = 5;
+            e.EndGoal = goal;
             return e;
         }
 
-        public Enemy BossEnemyMaker(double x, double y)
+        public Enemy BossEnemyMaker(double x, double y, int goal)
         {
             Enemy e = new Enemy();
             tmpVect = e.Speed;
@@ -74,6 +76,7 @@ namespace GUI_20212202_E4GBAX.Logic
             e.Value = 125;
             e.Center = new Point(x, y);
             e.MS = 10;
+            e.EndGoal = goal;
             return e;
         }
         // Point centerHelper;
@@ -120,6 +123,10 @@ namespace GUI_20212202_E4GBAX.Logic
             if (matrix[enemyCenterMatrixY, enemyCenterMatrixX] == TowerItem.goal)
             {
                 EnemyGoalReached(e);
+            }
+            else if(matrix[enemyCenterMatrixY, enemyCenterMatrixX] == TowerItem.crossroad)
+            {
+
             }
         }
         public void EnemyGoalReached(Enemy e)

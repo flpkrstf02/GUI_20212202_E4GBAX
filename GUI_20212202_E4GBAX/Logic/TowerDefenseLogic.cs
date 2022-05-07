@@ -140,19 +140,30 @@ namespace GUI_20212202_E4GBAX.Logic
                             switch (towerlvl)
                             {
                                 case 1:
-                                    GameMatrix[i, j] = TowerItem.lvl1tower;
                                     if(User.Gold >= 40)
-                                    Towers.Add(tLogic.Tower1Maker(p,i,j));
+                                    {
+                                        GameMatrix[i, j] = TowerItem.lvl1tower;
+                                        Towers.Add(tLogic.Tower1Maker(p, i, j));
+                                        User.Gold -= 40;
+                                    }
+                                    
                                     break;
                                 case 2:
                                     if (User.Gold >= 100)
+                                    {
                                         GameMatrix[i, j] = TowerItem.lvl2tower;
-                                    Towers.Add(tLogic.Tower2Maker(p,i,j));
+                                        Towers.Add(tLogic.Tower2Maker(p, i, j));
+                                        User.Gold -= 100;
+                                    }
                                     break;
                                 case 3:
                                     if (User.Gold >= 125)
+                                    {
                                         GameMatrix[i, j] = TowerItem.lvl3tower;
-                                    Towers.Add(tLogic.Tower12Maker(p,i,j));
+                                        Towers.Add(tLogic.Tower12Maker(p, i, j));
+                                        User.Gold -= 125;
+                                    }
+                                        
                                     break;
                             }
                         }
@@ -194,16 +205,40 @@ namespace GUI_20212202_E4GBAX.Logic
             {
                 if(Enumbers%10 == 0)
                 {
-                    e=elogic.BossEnemyMaker(x,y);
+                    if(Enumbers%2 == 0)
+                    {
+                        e = elogic.BossEnemyMaker(x, y, 1);
+                    }
+                    else
+                    {
+                        e = elogic.BossEnemyMaker(x, y, 0);
+                    }
+                    
                     
                 }
                 else if(Enumbers % 5 == 0)
                 {
-                    Enemies.Add(elogic.StrongEnemyMaker(x,y));
+                    if(Enumbers % 2 == 0)
+                    {
+                        Enemies.Add(elogic.StrongEnemyMaker(x, y,1));
+                    }
+                    else
+                    {
+                        Enemies.Add(elogic.StrongEnemyMaker(x, y, 0));
+                    }
+                    
                 }
                 else
                 {
-                    Enemies.Add(elogic.AvgEnemyMaker(x,y));
+                    if(Enumbers%2 == 0)
+                    {
+                        Enemies.Add(elogic.AvgEnemyMaker(x, y,1));
+                    }
+                    else
+                    {
+                        Enemies.Add(elogic.AvgEnemyMaker(x,y,0));
+                    }
+                    
                 }
             }
         }
@@ -254,7 +289,7 @@ namespace GUI_20212202_E4GBAX.Logic
                     }
                     idx++;
                 }
-                if (Enemies.Count > 0)
+                if (Enemies.Count > 0 && closestIdx < Enemies.Count)
                 {
                     if (Math.Abs(item.centerIdxX - eX) <= item.range && Math.Abs(item.centerIdxY - eY) <= item.range)
                     {
