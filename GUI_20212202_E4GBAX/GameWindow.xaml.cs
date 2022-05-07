@@ -26,13 +26,15 @@ namespace GUI_20212202_E4GBAX
     public partial class GameWindow : Window
     {
         TowerDefenseLogic logic;
+        SavedGame savedGame;
         public GameWindow(SavedGame savedGame)
         {
             InitializeComponent();
+            this.savedGame = savedGame;
             img.ImageSource = new BitmapImage(new Uri(System.IO.Path.Combine("Assets", "bg_ground_4.png"), UriKind.RelativeOrAbsolute));
             logic = new TowerDefenseLogic(savedGame);
             display.SetupModel(logic);
-            
+
         }
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
@@ -71,7 +73,7 @@ namespace GUI_20212202_E4GBAX
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point p = e.GetPosition(grid);
-            logic.TowerPosition(new Size(grid.ActualWidth, grid.ActualHeight), p,int.Parse(cb_tower.SelectedItem.ToString()));
+            logic.TowerPosition(new Size(grid.ActualWidth, grid.ActualHeight), p, int.Parse(cb_tower.SelectedItem.ToString()));
             logic.EnemySpawner(new Size(grid.ActualWidth, grid.ActualHeight));
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
             display.InvalidateVisual();
@@ -85,14 +87,20 @@ namespace GUI_20212202_E4GBAX
                 var inputs = JsonConvert.DeserializeObject<SavedGame[]>(File.ReadAllText("savedgames.json"));
                 foreach (var input in inputs)
                 {
-                    savedGames.Add(input);
+                    if (input.Name != savedGame.Name)
+                    {
+                        savedGames.Add(input);
+                    }
                 }
             }
             SavedGame save = logic.Save();
-            savedGames.Add(save);
-            string jsonData=JsonConvert.SerializeObject(savedGames);
+            if (save.Hp > 0)
+            {
+                savedGames.Add(save);
+            }
+
+            string jsonData = JsonConvert.SerializeObject(savedGames);
             File.WriteAllText("savedgames.json", jsonData);
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) => Close();

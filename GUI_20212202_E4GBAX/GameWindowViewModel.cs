@@ -22,21 +22,6 @@ namespace GUI_20212202_E4GBAX
             set { SetProperty(ref selectedTower, value); }
         }
 
-        public int HP
-        {
-            get
-            {
-                return 0;
-            }
-        }
-
-        public int Gold
-        {
-            get
-            {
-                return 0;
-            }
-        }
         public static bool IsInDesignMode
         {
             get
