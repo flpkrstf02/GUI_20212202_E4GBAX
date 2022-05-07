@@ -126,7 +126,21 @@ namespace GUI_20212202_E4GBAX.Logic
             }
             else if(matrix[enemyCenterMatrixY, enemyCenterMatrixX] == TowerItem.crossroad)
             {
+                if(e.EndGoal == 1)
+                {
+                    tmpVect = e.Speed;
+                    tmpVect.X = e.MS;
+                    tmpVect.Y = 0;
+                    e.Speed = tmpVect;
+                }
+                else if (e.EndGoal == 0)
+                {
+                    tmpVect = e.Speed;
+                    tmpVect.X = -e.MS;
 
+                    tmpVect.Y = 0;
+                    e.Speed = tmpVect;
+                }
             }
         }
         public void EnemyGoalReached(Enemy e)
