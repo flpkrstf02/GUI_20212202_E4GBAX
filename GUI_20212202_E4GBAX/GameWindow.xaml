@@ -14,7 +14,7 @@
         <SolidColorBrush x:Key="Background" Color="SaddleBrown"/>
         <SolidColorBrush x:Key="Foreground" Color="LightGoldenrodYellow"/>
     </Window.Resources>
-    <Grid x:Name="grid" >
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="10*"/>
@@ -40,6 +40,8 @@
             <Label x:Name="lb_gold"  ContentStringFormat="Gold: {0}" Foreground="{StaticResource Foreground}" FontWeight="Bold" FontSize="20" Grid.Column="4"/>
             <Button Content="Quit" Click="Button_Click" FontSize="15" Foreground="{StaticResource Foreground}" Grid.Column="6" Background="{StaticResource Background}"/>
         </Grid>
-        <local:Display x:Name="display" Grid.Row="1"/>
+        <Grid Grid.Row="1" x:Name="grid">
+            <local:Display x:Name="display"/>
+        </Grid>
     </Grid>
 </Window>
