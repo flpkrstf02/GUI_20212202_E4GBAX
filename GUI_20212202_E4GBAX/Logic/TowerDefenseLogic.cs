@@ -23,8 +23,9 @@ namespace GUI_20212202_E4GBAX.Logic
         Size sizeH;
         int Enumbers = 0;
         int MaxEnemies = 10;
-        private Queue<string> levels;
+        private string[] levels;
         int[] startCenter;
+        int currentLevel = 0;
         public int HP
         {
             get
@@ -48,14 +49,17 @@ namespace GUI_20212202_E4GBAX.Logic
         public TowerDefenseLogic(SavedGame savedGame)
         {
             User = new Player();
-            levels = new Queue<string>();
+            levels = new string[5];
+            int i = 0;
             var lvls = Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Levels"),
                 "*.txt");
             foreach (var item in lvls)
             {
-                levels.Enqueue(item);
+                levels[i] = item;
+                i++;
             }
-            LoadNext(levels.Dequeue());
+            LoadNext(levels[currentLevel]);
+            currentLevel++;
             this.savedGame = savedGame;
             Enemies = new List<Enemy>();
             Towers=new List<Tower>();
