@@ -87,6 +87,23 @@ namespace GUI_20212202_E4GBAX.Renderer
                 {
                     ImageBrush brush = new ImageBrush();
                     brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "Run2.png"), UriKind.RelativeOrAbsolute)));
+                    drawingContext.DrawLine(new Pen(Brushes.White, 2), new Point(item.Center.X-20, item.Center.Y-30), new Point(item.Center.X+20, item.Center.Y-30));
+                    if (item.Damage==10)
+                    {
+                        //hp 10
+                        drawingContext.DrawLine(new Pen(Brushes.Green, 2), new Point(item.Center.X - 20, item.Center.Y - 30), new Point(item.Center.X - 20+(item.Health*4), item.Center.Y - 30));
+                    }
+                    else if (item.Damage == 25)
+                    {
+                        //hp 25
+                        drawingContext.DrawLine(new Pen(Brushes.Green, 2), new Point(item.Center.X - 20, item.Center.Y - 30), new Point(item.Center.X - 20 + (item.Health * 1.6), item.Center.Y - 30));
+                    }
+                    else if (item.Damage==50)
+                    {
+                        //hp 100
+                        drawingContext.DrawLine(new Pen(Brushes.Green, 2), new Point(item.Center.X - 20, item.Center.Y - 30), new Point(item.Center.X - 20 + (item.Health * 0.4), item.Center.Y - 30));
+                    }
+                    
                     drawingContext.DrawEllipse(brush, null, new Point(item.Center.X, item.Center.Y), 40, 40);
                 }
 
