@@ -50,8 +50,6 @@ namespace GUI_20212202_E4GBAX
             {
                 logic.TimeStep(new Size(grid.ActualWidth, grid.ActualHeight));
                 lb_hp.Content = logic.HP;
-                lb_gold.Content = logic.Gold;
-                display.InvalidateVisual();
                 if (logic.GameOver())
                 {
                     Close(); //TODO valami varázs ablak hogy Game Over

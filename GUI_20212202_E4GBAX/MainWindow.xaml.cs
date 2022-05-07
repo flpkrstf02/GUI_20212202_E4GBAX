@@ -26,7 +26,7 @@ namespace GUI_20212202_E4GBAX
         public MainWindow()
         {
             InitializeComponent();
-            img.ImageSource = new BitmapImage(new Uri(System.IO.Path.Combine("Assets", "stonebg.jpg"), UriKind.RelativeOrAbsolute));
+            img.ImageSource = new BitmapImage(new Uri(System.IO.Path.Combine("Assets", "menubg1.jpg"), UriKind.RelativeOrAbsolute));
         }
 
         private void CloseWindow_Click(object sender, RoutedEventArgs e) => Close();

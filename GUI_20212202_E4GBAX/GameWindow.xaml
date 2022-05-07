@@ -10,6 +10,10 @@
     <Window.DataContext>
         <vm:GameWindowViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <SolidColorBrush x:Key="Background" Color="SaddleBrown"/>
+        <SolidColorBrush x:Key="Foreground" Color="LightGoldenrodYellow"/>
+    </Window.Resources>
     <Grid x:Name="grid" >
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -28,13 +32,13 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Select the level of tower" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Foreground="LightGoldenrodYellow" FontWeight="Bold" FontSize="12" Grid.Column="0"/>
-            <ComboBox x:Name="cb_tower" ItemsSource="{Binding TowerVariety}" SelectedItem="{Binding SelectedTower}" SelectedIndex="0" Grid.Column="1" Opacity="0.3" OpacityMask="SaddleBrown">
+            <Label Content="Select the level of tower" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Foreground="{StaticResource Foreground}" FontWeight="Bold" FontSize="12" Grid.Column="0"/>
+            <ComboBox x:Name="cb_tower" ItemsSource="{Binding TowerVariety}" SelectedItem="{Binding SelectedTower}" SelectedIndex="0" Grid.Column="1" Opacity="0.3" OpacityMask="{StaticResource Background}">
                 
             </ComboBox>
-            <Label x:Name="lb_hp"  ContentStringFormat="HP: {0}" Foreground="LightGoldenrodYellow" FontWeight="Bold" FontSize="20" Grid.Column="3"/>
-            <Label x:Name="lb_gold"  ContentStringFormat="Gold: {0}" Foreground="LightGoldenrodYellow" FontWeight="Bold" FontSize="20" Grid.Column="4"/>
-            <Button Content="Quit" Click="Button_Click" FontSize="15" Foreground="LightGoldenrodYellow" Grid.Column="6" Background="SaddleBrown"/>
+            <Label x:Name="lb_hp"  ContentStringFormat="HP: {0}" Foreground="{StaticResource Foreground}" FontWeight="Bold" FontSize="20" Grid.Column="3"/>
+            <Label x:Name="lb_gold"  ContentStringFormat="Gold: {0}" Foreground="{StaticResource Foreground}" FontWeight="Bold" FontSize="20" Grid.Column="4"/>
+            <Button Content="Quit" Click="Button_Click" FontSize="15" Foreground="{StaticResource Foreground}" Grid.Column="6" Background="{StaticResource Background}"/>
         </Grid>
         <local:Display x:Name="display" Grid.Row="1"/>
     </Grid>
