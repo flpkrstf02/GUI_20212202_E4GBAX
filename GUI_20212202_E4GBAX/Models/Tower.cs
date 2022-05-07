@@ -10,10 +10,11 @@ namespace GUI_20212202_E4GBAX.Models
     public class Tower
     {
         private List<string> bullet;
-        public int range {get; set;}
+        public int range { get; set; }
         public int damage { get; set; }
-        public Point Center { get; set; }   
-
+        public Point Center { get; set; }
+        public int centerIdxX { get; set; }
+        public int centerIdxY { get; set; }
         public int cost { get; set; }
 
        public int gold { get; set; }

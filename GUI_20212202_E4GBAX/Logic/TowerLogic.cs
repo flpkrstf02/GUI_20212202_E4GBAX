@@ -19,35 +19,41 @@ namespace GUI_20212202_E4GBAX.Logic
         }
 
         //alap torony, egy célpontot sebez egyszerre
-        public Tower Tower1Maker(Point p)
+        public Tower Tower1Maker(Point p, int x, int y)
         {
             Tower t = new Tower();
             t.cost = 40;
             t.range = 2;
             t.damage = 2;
             t.Center = p;
+            t.centerIdxX = x;
+            t.centerIdxY = y;
             return t;
         }
 
         //az alap torony fejlesztése, nagyobb sebzéssel
-        public Tower Tower12Maker(Point p)
+        public Tower Tower12Maker(Point p, int x, int y)
         {
             Tower t = new Tower();
             t.cost = 100;
             t.range = 6;
             t.damage = 8;
             t.Center = p;
+            t.centerIdxX = x;
+            t.centerIdxY = y;
             return t;
         }
 
         //különálló torony, Teljes pályás hatótávval
-        public Tower Tower2Maker(Point p)
+        public Tower Tower2Maker(Point p, int x, int y)
         {
             Tower t = new Tower();
             t.cost = 125;
             t.range = 10000;
             t.damage = 10;
             t.Center = p;
+            t.centerIdxX = x;
+            t.centerIdxY = y;
             return t;
         }
 
