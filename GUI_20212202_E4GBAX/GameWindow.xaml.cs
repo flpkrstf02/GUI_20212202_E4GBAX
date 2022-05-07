@@ -50,9 +50,20 @@ namespace GUI_20212202_E4GBAX
                 lb_hp.Content = logic.HP;
                 lb_gold.Content = logic.Gold;
                 display.InvalidateVisual();
+                if (logic.GameOver())
+                {
+                    Close(); //TODO valami varázs ablak hogy Game Over
+                }
             };
             dt.Start();
-            
+            DispatcherTimer et = new DispatcherTimer();
+            et.Interval = TimeSpan.FromMilliseconds(1000);
+            et.Tick += (sender, eventargs) =>
+            {
+                logic.EnemySpawner(new Size(grid.ActualWidth, grid.ActualHeight));
+            };
+            et.Start();
+
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
             display.InvalidateVisual();
         }

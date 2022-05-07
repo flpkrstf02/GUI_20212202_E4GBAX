@@ -9,13 +9,17 @@ namespace GUI_20212202_E4GBAX.Models
 {
     public class Enemy
     {
+        public Enemy()
+        {
+
+        }
         public Enemy(Point center, Vector speed)
         {
             Center = center;
             Speed = speed;
             Damage = 10;
         }
-
+        public int MS { get; set; }
         public Point Center { get; set; }
 
         public Vector Speed { get; set; }

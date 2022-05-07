@@ -12,6 +12,7 @@ namespace GUI_20212202_E4GBAX.Logic
     public class TowerDefenseLogic : IGameModel
     {
         IEnemyLogic elogic = new EnemyLogic();
+        ITowerLogic tLogic = new TowerLogic(); 
         public event EventHandler Changed;
         public Player User { get; set; }
         public List<Enemy> Enemies { get; set; }
@@ -20,7 +21,8 @@ namespace GUI_20212202_E4GBAX.Logic
         double eHelperH;
         double eHelperW;
         Size sizeH;
-        
+        int Enumbers = 0;
+        int MaxEnemies = 10;
         private Queue<string> levels;
         int[] startCenter;
         public int HP
@@ -129,12 +131,15 @@ namespace GUI_20212202_E4GBAX.Logic
                             {
                                 case 1:
                                     GameMatrix[i, j] = TowerItem.lvl1tower;
+                                    Towers.Add(tLogic.Tower1Maker(p));
                                     break;
                                 case 2:
                                     GameMatrix[i, j] = TowerItem.lvl2tower;
+                                    Towers.Add(tLogic.Tower2Maker(p));
                                     break;
                                 case 3:
                                     GameMatrix[i, j] = TowerItem.lvl3tower;
+                                    Towers.Add(tLogic.Tower12Maker(p));
                                     break;
                             }
                         }
@@ -142,16 +147,16 @@ namespace GUI_20212202_E4GBAX.Logic
                 }
             }
         }
-        public void EnemySpawner(Size size)
-        {
-            double rectHeight = size.Height / GameMatrix.GetLength(0);
-            double rectWidth = size.Width / GameMatrix.GetLength(1);
-            double x = startCenter[1] * rectWidth+(rectWidth/2);
-            double y = startCenter[0] * rectHeight+(rectHeight/2);
-            this.eHelperH = rectHeight;
-            this.eHelperW = rectWidth;
-            Enemies.Add(new Enemy(new Point(x,y), new Vector(0, 0)));
-        }
+        //public void EnemySpawner(Size size)
+        //{
+        //    double rectHeight = size.Height / GameMatrix.GetLength(0);
+        //    double rectWidth = size.Width / GameMatrix.GetLength(1);
+        //    double x = startCenter[1] * rectWidth+(rectWidth/2);
+        //    double y = startCenter[0] * rectHeight+(rectHeight/2);
+        //    this.eHelperH = rectHeight;
+        //    this.eHelperW = rectWidth;
+        //    Enemies.Add(new Enemy(new Point(x,y), new Vector(0, 0)));
+        //}
         public void TimeStep(Size size)
         {
             sizeH = size;
@@ -161,6 +166,42 @@ namespace GUI_20212202_E4GBAX.Logic
             {
                 elogic.EnemyMove(item);
             }
+            
+        }
+        public void EnemySpawner(Size size)
+        {
+            Enemy e = new Enemy();
+            double rectHeight = size.Height / GameMatrix.GetLength(0);
+            double rectWidth = size.Width / GameMatrix.GetLength(1);
+            double x = startCenter[1] * rectWidth+(rectWidth/2);
+            double y = startCenter[0] * rectHeight+(rectHeight/2);
+            Enumbers++;
+            if(Enumbers <= MaxEnemies)
+            {
+                if(Enumbers%10 == 0)
+                {
+                    e=elogic.BossEnemyMaker(x,y);
+                    
+                }
+                else if(Enumbers % 5 == 0)
+                {
+                    Enemies.Add(elogic.StrongEnemyMaker(x,y));
+                }
+                else
+                {
+                    Enemies.Add(elogic.AvgEnemyMaker(x,y));
+                }
+            }
+        }
+
+        public bool GameOver()
+        {
+            if (User.HP <= 0) { return true; }
+            else return false;
+        }
+        public void TowerAttack(Tower t, Enemy e)
+        {
+           // if()
         }
         public SavedGame Save()
         {

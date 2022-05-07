@@ -12,6 +12,7 @@ namespace GUI_20212202_E4GBAX.Models
         private List<string> bullet;
         public int range {get; set;}
         public int damage { get; set; }
+        public Point Center { get; set; }   
 
         public int cost { get; set; }
 

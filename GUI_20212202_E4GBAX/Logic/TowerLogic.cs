@@ -9,46 +9,48 @@ using static GUI_20212202_E4GBAX.Logic.TowerDefenseLogic;
 
 namespace GUI_20212202_E4GBAX.Logic
 {
-    public class TowerLogic: ITowerLogic
+    public class TowerLogic : ITowerLogic
     {
-        
+
 
         public TowerLogic()
-        { 
-            
+        {
+
         }
 
         //alap torony, egy célpontot sebez egyszerre
-        private void Tower1Maker(Tower t)
+        public Tower Tower1Maker(Point p)
         {
+            Tower t = new Tower();
             t.cost = 40;
             t.range = 2;
             t.damage = 2;
+            t.Center = p;
+            return t;
         }
 
         //az alap torony fejlesztése, nagyobb sebzéssel
-        private void Tower12Maker(Tower t)
+        public Tower Tower12Maker(Point p)
         {
+            Tower t = new Tower();
             t.cost = 100;
             t.range = 6;
             t.damage = 8;
+            t.Center = p;
+            return t;
         }
 
-        //különálló torony, területi sebzéssel
-        private void Tower2Maker(Tower t)
+        //különálló torony, Teljes pályás hatótávval
+        public Tower Tower2Maker(Point p)
         {
+            Tower t = new Tower();
             t.cost = 125;
-            t.range = 4;
+            t.range = 10000;
             t.damage = 10;
+            t.Center = p;
+            return t;
         }
 
-        //megérinti az egyik enemyt
-        public void TouchTower(Tower t, Enemy e)
-        {
-           
-        }
-
-        
 
 
 
