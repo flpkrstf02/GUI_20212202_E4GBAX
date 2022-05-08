@@ -114,7 +114,7 @@ namespace GUI_20212202_E4GBAX
                 }
             }
             SavedGame save = logic.Save();
-            if (save.Hp > 0)
+            if (save.Hp > 0 && save.Level<5)
             {
                 savedGames.Add(save);
             }

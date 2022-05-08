@@ -331,7 +331,7 @@ namespace GUI_20212202_E4GBAX.Logic
                 Name=savedGame.Name,
                 Hp=User.HP,
                 Gold=User.Gold,
-                Level=savedGame.Level,
+                Level=currentLevel,
                 Enemies=Enemies,
                 Towers=Towers
             };
