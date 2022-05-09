@@ -54,7 +54,9 @@ namespace GUI_20212202_E4GBAX
                 display.InvalidateVisual();
                 if (logic.GameOver())
                 {
+                    MessageBox.Show("Gamevover");
                     Close(); //TODO valami varázs ablak hogy Game Over
+                    dt.Stop();
                 }
             };
             dt.Start();
