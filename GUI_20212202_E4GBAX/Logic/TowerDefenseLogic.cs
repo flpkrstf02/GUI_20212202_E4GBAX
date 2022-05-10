@@ -29,6 +29,7 @@ namespace GUI_20212202_E4GBAX.Logic
         int[] startCenter;
         int currentLevel;
         int[,] moveH = new int[7, 7];
+       public bool GameCleared = false;
         public int HP
         {
             get
@@ -172,16 +173,6 @@ namespace GUI_20212202_E4GBAX.Logic
                 }
             }
         }
-        //public void EnemySpawner(Size size)
-        //{
-        //    double rectHeight = size.Height / GameMatrix.GetLength(0);
-        //    double rectWidth = size.Width / GameMatrix.GetLength(1);
-        //    double x = startCenter[1] * rectWidth+(rectWidth/2);
-        //    double y = startCenter[0] * rectHeight+(rectHeight/2);
-        //    this.eHelperH = rectHeight;
-        //    this.eHelperW = rectWidth;
-        //    Enemies.Add(new Enemy(new Point(x,y), new Vector(0, 0)));
-        //}
         public void TimeStep(Size size)
         {
             sizeH = size;
@@ -318,12 +309,17 @@ namespace GUI_20212202_E4GBAX.Logic
                 }
                 
             }
-            if(Enemies.Count == 0 && Enumbers == MaxEnemies)
+            if(Enemies.Count == 0 && Enumbers == MaxEnemies && currentLevel<4)
             {
                 Enumbers = 0;
                 NextLevel();
             }
+            else if(Enemies.Count == 0 && Enumbers == MaxEnemies && currentLevel == 4)
+            {
+                GameCleared = true;
+            }
         }
+
         public SavedGame Save()
         {
             return new SavedGame()

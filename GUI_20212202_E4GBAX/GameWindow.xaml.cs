@@ -58,6 +58,12 @@ namespace GUI_20212202_E4GBAX
                     Close(); //TODO valami varázs ablak hogy Game Over
                     dt.Stop();
                 }
+                if (logic.GameCleared)
+                {
+                    MessageBox.Show("Congratulations you beat the game!");
+                    Close();
+                    dt.Stop();
+                }
             };
             dt.Start();
 
@@ -76,7 +82,7 @@ namespace GUI_20212202_E4GBAX
             display.InvalidateVisual();
 
             DispatcherTimer tT = new DispatcherTimer();
-            tT.Interval = TimeSpan.FromMilliseconds(100);
+            tT.Interval = TimeSpan.FromMilliseconds(200);
             tT.Tick += (sender, eventargs) =>
             {
                 logic.TowerAttack();
