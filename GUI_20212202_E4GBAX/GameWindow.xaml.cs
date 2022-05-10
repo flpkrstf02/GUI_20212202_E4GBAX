@@ -55,7 +55,7 @@ namespace GUI_20212202_E4GBAX
                 if (logic.GameOver())
                 {
                     MessageBox.Show("Gamevover");
-                    Close(); //TODO valami varázs ablak hogy Game Over
+                    Close();
                     dt.Stop();
                 }
                 if (logic.GameCleared)
@@ -82,7 +82,7 @@ namespace GUI_20212202_E4GBAX
             display.InvalidateVisual();
 
             DispatcherTimer tT = new DispatcherTimer();
-            tT.Interval = TimeSpan.FromMilliseconds(200);
+            tT.Interval = TimeSpan.FromMilliseconds(300);
             tT.Tick += (sender, eventargs) =>
             {
                 logic.TowerAttack();

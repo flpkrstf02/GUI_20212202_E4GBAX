@@ -24,7 +24,7 @@ namespace GUI_20212202_E4GBAX.Logic
         double rectWidth;
         Size sizeH;
         int Enumbers = 1;
-        int MaxEnemies = 15;
+        int MaxEnemies = 2;
         private string[] levels;
         int[] startCenter;
         int currentLevel;

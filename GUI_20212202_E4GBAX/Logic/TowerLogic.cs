@@ -24,7 +24,7 @@ namespace GUI_20212202_E4GBAX.Logic
             Tower t = new Tower();
             t.cost = 40;
             t.range = 2;
-            t.damage = 1;
+            t.damage = 2;
             t.Center = p;
             t.centerIdxX = x;
             t.centerIdxY = y;

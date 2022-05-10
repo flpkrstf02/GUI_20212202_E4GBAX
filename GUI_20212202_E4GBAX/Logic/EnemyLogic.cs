@@ -89,8 +89,8 @@ namespace GUI_20212202_E4GBAX.Logic
         {
             //width = size.Width / matrix.GetLength(1);
             //height = size.Height / matrix.GetLength(0);
-            matrixHelperY = (int)((e.Center.X / (rectWidth)) - 0.5);// + (rectWidth / 2))); //+ 1.05);
-            matrixHelperX = (int)((e.Center.Y / (rectHeight)) - 0.5); // + (rectHeight / 2))); //+ 0.6);
+            matrixHelperY = (int)((e.Center.X / (rectWidth)));// + (rectWidth / 2))); //+ 1.05);
+            matrixHelperX = (int)((e.Center.Y / (rectHeight))); // + (rectHeight / 2))); //+ 0.6);
             if (matrix[matrixHelperX, matrixHelperY + 1] == TowerItem.path
                     //&& (matrix[matrixHelperX, matrixHelperY-1] != TowerItem.path)
                     //&& (matrix[matrixHelperX+1, matrixHelperY] != TowerItem.path)
@@ -155,8 +155,8 @@ namespace GUI_20212202_E4GBAX.Logic
 
             Point centerHelper = new Point(e.Center.X + e.Speed.X, e.Center.Y + e.Speed.Y);
             e.Center = centerHelper;
-            int enemyCenterMatrixX = (int)((e.Center.X / (rectWidth)) - 0.5);// + (rectWidth / 2)));// + 1.05);
-            int enemyCenterMatrixY = (int)((e.Center.Y / (rectHeight)) - 0.5);// + (rectHeight / 2));// + 0.6);
+            int enemyCenterMatrixX = (int)((e.Center.X / (rectWidth)));// + (rectWidth / 2)));// + 1.05);
+            int enemyCenterMatrixY = (int)((e.Center.Y / (rectHeight)));// + (rectHeight / 2));// + 0.6);
             if(e.usedP[enemyCenterMatrixY,enemyCenterMatrixX] == 0)
             {
                 e.usedP[enemyCenterMatrixY, enemyCenterMatrixX] = 1;
