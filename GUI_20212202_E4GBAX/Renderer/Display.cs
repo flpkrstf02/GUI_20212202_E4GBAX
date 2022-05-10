@@ -15,6 +15,7 @@ namespace GUI_20212202_E4GBAX.Renderer
     {
         Size size;
         IGameModel model;
+        int enemyCounter;
         public void Resize(Size size)
         {
             this.size = size;
@@ -22,6 +23,7 @@ namespace GUI_20212202_E4GBAX.Renderer
         public void SetupModel(IGameModel model)
         {
             this.model = model;
+            enemyCounter = 1;
         }
         protected override void OnRender(DrawingContext drawingContext)
         {
@@ -93,10 +95,19 @@ namespace GUI_20212202_E4GBAX.Renderer
                         drawingContext.DrawRectangle(towerbrush, new Pen(Brushes.Black, 0), new Rect(item.centerIdxY * rectWidth, item.centerIdxX * rectHeight, rectWidth, rectHeight));
                     }
                 }
+
                 foreach (var item in model.Enemies)
                 {
                     ImageBrush brush = new ImageBrush();
-                    brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "Run2.png"), UriKind.RelativeOrAbsolute)));
+                    if (enemyCounter>=12)
+                    {
+                        enemyCounter = 1;
+                    }
+                    else
+                    {
+                        enemyCounter++;
+                    }
+                    brush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", $"Run{enemyCounter}.png"), UriKind.RelativeOrAbsolute)));
                     drawingContext.DrawLine(new Pen(Brushes.White, 2), new Point(item.Center.X - 20, item.Center.Y - 30), new Point(item.Center.X + 20, item.Center.Y - 30));
                     if (item.Damage == 10)
                     {
