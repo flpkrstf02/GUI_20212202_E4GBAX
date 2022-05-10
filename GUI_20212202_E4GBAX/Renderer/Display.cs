@@ -84,7 +84,7 @@ namespace GUI_20212202_E4GBAX.Renderer
                     {
                         towerbrush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "tower2.png"), UriKind.RelativeOrAbsolute)));
                     }
-                    else if (item.cost == 125)
+                    else if (item.cost == 200)
                     {
                         towerbrush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Assets", "tower3.png"), UriKind.RelativeOrAbsolute)));
                     }
