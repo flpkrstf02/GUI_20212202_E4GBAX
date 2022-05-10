@@ -20,7 +20,6 @@ namespace GUI_20212202_E4GBAX.Logic
         private int matrixHelperX;
         private int matrixHelperY;
         private Size size;
-        //private int[,] movementH = new int[7,7];
         public EnemyLogic()
         {
 
@@ -33,7 +32,6 @@ namespace GUI_20212202_E4GBAX.Logic
             this.rectHeight = height;
             this.rectWidth = width;
             this.size = size;
-            //this.movementH = new int[matrix.GetLongLength(0),matrix.GetLongLength(1)];
         }
         public Enemy AvgEnemyMaker(double x, double y, int goal)
         {
