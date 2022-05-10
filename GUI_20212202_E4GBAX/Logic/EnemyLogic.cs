@@ -85,14 +85,10 @@ namespace GUI_20212202_E4GBAX.Logic
         // Point centerHelper;
         public void EnemyMove(Enemy e, int[,] movementH)
         {
-            //width = size.Width / matrix.GetLength(1);
-            //height = size.Height / matrix.GetLength(0);
-            matrixHelperY = (int)((e.Center.X / (rectWidth)));// + (rectWidth / 2))); //+ 1.05);
-            matrixHelperX = (int)((e.Center.Y / (rectHeight))); // + (rectHeight / 2))); //+ 0.6);
+
+            matrixHelperY = (int)((e.Center.X / (rectWidth)));
+            matrixHelperX = (int)((e.Center.Y / (rectHeight)));
             if (matrix[matrixHelperX, matrixHelperY + 1] == TowerItem.path
-                    //&& (matrix[matrixHelperX, matrixHelperY-1] != TowerItem.path)
-                    //&& (matrix[matrixHelperX+1, matrixHelperY] != TowerItem.path)
-                    //&& (matrix[matrixHelperX-1, matrixHelperY] != TowerItem.path))
                     && e.Speed.X != e.MS
                     && e.Speed.X != -e.MS
                     && e.usedP[matrixHelperX, matrixHelperY+1] == 0
@@ -105,9 +101,6 @@ namespace GUI_20212202_E4GBAX.Logic
                 e.Speed = tmpVect;
             }
             else if (matrixHelperY - 1 >= 0 && (matrix[matrixHelperX, matrixHelperY - 1] == TowerItem.path)
-                    //&& (matrix[matrixHelperX, matrixHelperY+1] != TowerItem.path)
-                    //&& (matrix[matrixHelperX+1, matrixHelperY] != TowerItem.path)
-                    //&& (matrix[matrixHelperX-1, matrixHelperY] != TowerItem.path)
                     && e.Speed.X != e.MS
                     && e.Speed.X != -e.MS
                     && e.usedP[matrixHelperX, matrixHelperY-1] == 0
@@ -121,9 +114,6 @@ namespace GUI_20212202_E4GBAX.Logic
                 e.Speed = tmpVect;
             }
             else if ((matrix[matrixHelperX + 1, matrixHelperY] == TowerItem.path)
-                    //&& (matrix[matrixHelperX - 1, matrixHelperY] != TowerItem.path)
-                    //&& (matrix[matrixHelperX, matrixHelperY+1] != TowerItem.path)
-                    //&& (matrix[matrixHelperX, matrixHelperY-1] != TowerItem.path)
                     && e.Speed.Y != e.MS
                     && e.Speed.Y != -e.MS
                     && e.usedP[matrixHelperX + 1, matrixHelperY] == 0
@@ -137,9 +127,6 @@ namespace GUI_20212202_E4GBAX.Logic
                 e.Speed = tmpVect;
             }
             else if ((matrixHelperX - 1) >= 0 && (matrix[matrixHelperX - 1, matrixHelperY] == TowerItem.path)
-                    //&& (matrix[matrixHelperX + 1, matrixHelperY] != TowerItem.path)
-                    //&& (matrix[matrixHelperX, matrixHelperY + 1] != TowerItem.path)
-                    //&& (matrix[matrixHelperX, matrixHelperY - 1] != TowerItem.path))
                     && e.Speed.Y != e.MS
                     &&e.Speed.Y != -e.MS
                     && e.usedP[matrixHelperX-1,matrixHelperY] == 0) //felfelé
@@ -153,8 +140,8 @@ namespace GUI_20212202_E4GBAX.Logic
 
             Point centerHelper = new Point(e.Center.X + e.Speed.X, e.Center.Y + e.Speed.Y);
             e.Center = centerHelper;
-            int enemyCenterMatrixX = (int)((e.Center.X / (rectWidth)));// + (rectWidth / 2)));// + 1.05);
-            int enemyCenterMatrixY = (int)((e.Center.Y / (rectHeight)));// + (rectHeight / 2));// + 0.6);
+            int enemyCenterMatrixX = (int)((e.Center.X / (rectWidth)));
+            int enemyCenterMatrixY = (int)((e.Center.Y / (rectHeight)));
             if(e.usedP[enemyCenterMatrixY,enemyCenterMatrixX] == 0)
             {
                 e.usedP[enemyCenterMatrixY, enemyCenterMatrixX] = 1;
