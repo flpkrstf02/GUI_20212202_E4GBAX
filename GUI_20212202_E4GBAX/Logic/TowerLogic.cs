@@ -23,7 +23,7 @@ namespace GUI_20212202_E4GBAX.Logic
         {
             Tower t = new Tower();
             t.cost = 40;
-            t.range = 2;
+            t.range = 100;
             t.damage = 2;
             t.Center = p;
             t.centerIdxX = x;
@@ -36,8 +36,8 @@ namespace GUI_20212202_E4GBAX.Logic
         {
             Tower t = new Tower();
             t.cost = 100;
-            t.range = 4;
-            t.damage = 4;
+            t.range = 100;
+            t.damage = 5;
             t.Center = p;
             t.centerIdxX = x;
             t.centerIdxY = y;
@@ -48,8 +48,8 @@ namespace GUI_20212202_E4GBAX.Logic
         public Tower Tower2Maker(Point p, int x, int y)
         {
             Tower t = new Tower();
-            t.cost = 125;
-            t.range = 10000;
+            t.cost = 200;
+            t.range = 100;
             t.damage = 10;
             t.Center = p;
             t.centerIdxX = x;
