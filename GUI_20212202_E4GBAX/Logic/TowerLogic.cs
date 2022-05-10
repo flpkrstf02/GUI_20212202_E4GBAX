@@ -37,7 +37,7 @@ namespace GUI_20212202_E4GBAX.Logic
             Tower t = new Tower();
             t.cost = 100;
             t.range = 100;
-            t.damage = 5;
+            t.damage = 8;
             t.Center = p;
             t.centerIdxX = x;
             t.centerIdxY = y;
@@ -50,7 +50,7 @@ namespace GUI_20212202_E4GBAX.Logic
             Tower t = new Tower();
             t.cost = 200;
             t.range = 100;
-            t.damage = 10;
+            t.damage = 4;
             t.Center = p;
             t.centerIdxX = x;
             t.centerIdxY = y;

@@ -89,6 +89,13 @@ namespace GUI_20212202_E4GBAX
             };
             tT.Start();
 
+            DispatcherTimer tTs = new DispatcherTimer();
+            tTs.Interval = TimeSpan.FromMilliseconds(600);
+            tTs.Tick += (sender, eventargs) =>
+            {
+                logic.SlowTowerAttack();
+            };
+            tTs.Start();
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
             display.InvalidateVisual();
 

@@ -265,7 +265,29 @@ namespace GUI_20212202_E4GBAX.Logic
                 
             }
         }
-        public void TowerAttack()
+        public void AoETowerAttack(Tower t,Enemy e)
+        {
+            int eX = 0;
+            int eY = 0;
+            int e2X = 0;
+            int e2Y = 0;
+            e2X = (int)((e.Center.X / rectWidth));
+            e2Y = (int)((e.Center.Y / rectHeight));
+            foreach (var item in Enemies.ToList())
+            {
+                eX = (int)((item.Center.X / rectWidth));
+                eY = (int)((item.Center.Y / rectHeight));
+                if(eX == e2X && eY == e2Y)
+                {
+                    item.Health -= t.damage;
+                    if(item.Health <= 0)
+                    {
+                        elogic.EnemyDeath(item);
+                    }
+                }
+            }
+        }
+        public void SlowTowerAttack()
         {
             int closest = -1;
             int eX = 0;
@@ -274,6 +296,7 @@ namespace GUI_20212202_E4GBAX.Logic
             int idx = 0;
             foreach (var item in Towers)
             {
+                if(item.cost == 100) { 
                 foreach (var item2 in Enemies)
                 {
                     eX = (int)((item2.Center.X / rectWidth));
@@ -289,11 +312,55 @@ namespace GUI_20212202_E4GBAX.Logic
                 {
                     if (Math.Abs(item.centerIdxX - eX) <= item.range && Math.Abs(item.centerIdxY - eY) <= item.range)
                     {
-                        towerAttack(item, Enemies[closestIdx]);
+                        
+                            towerAttack(item, Enemies[closestIdx]);
+                       
+
                     }
 
                 }
-                
+
+                }
+            }
+        }
+        public void TowerAttack()
+        {
+            int closest = -1;
+            int eX = 0;
+            int eY = 0;
+            int closestIdx = 15;
+            int idx = 0;
+            foreach (var item in Towers)
+            {
+                if(item.cost != 100) { 
+                foreach (var item2 in Enemies)
+                {
+                    eX = (int)((item2.Center.X / rectWidth));
+                    eY = (int)((item2.Center.Y / rectHeight));
+                    if ((int)(Math.Sqrt(Math.Pow(eX - item.centerIdxX, 2) + Math.Pow(eY - item.centerIdxY, 2))) > closest)
+                    {
+                        closest = (int)(Math.Sqrt(Math.Pow(eX - item.centerIdxX, 2) + Math.Pow(eY - item.centerIdxY, 2)));
+                        closestIdx = idx;
+                    }
+                    idx++;
+                }
+                if (Enemies.Count > 0 && closestIdx < Enemies.Count)
+                {
+                    if (Math.Abs(item.centerIdxX - eX) <= item.range && Math.Abs(item.centerIdxY - eY) <= item.range)
+                    {
+                        if (item.cost == 200)
+                        {
+                            AoETowerAttack(item, Enemies[closestIdx]);
+                        }
+                        else
+                        {
+                            towerAttack(item, Enemies[closestIdx]);
+                        }
+                        
+                    }
+
+                }
+                }
             }
             if(Enemies.Count == 0 && Enumbers == MaxEnemies && currentLevel<4)
             {
